@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "pmneo.tsimporter",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "EditorConfig.editorconfig",
+    "bladnman.auto-align",
+    "davidanson.vscode-markdownlint",
+    "jpoissonnier.vscode-styled-components",
+    "silvenon.mdx"
+    // "orta.vscode-jest"
+  ]
+}

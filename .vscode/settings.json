@@ -1,0 +1,43 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "prettier.requireConfig": true,
+  "search.followSymlinks": false,
+
+  "eslint.enable": true,
+  "eslint.validate": ["typescript"],
+
+  "search.exclude": {
+    "**/dist/**": true,
+    "**/node_modules": true,
+    "packages/*/*.d.ts": true,
+    "packages/*/[!.]*.js": true
+  },
+
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/*.map": true,
+    "**/__snapshots__": true,
+    ".docz": true,
+    ".eslintcache": true,
+    "src": true,
+    "**/dist": true,
+    "packages/*/*.d.ts": true,
+    "packages/*/*.js": {
+      "when": "$(basename).d.ts"
+    },
+    "**/node_modules": true
+  },
+
+  "files.watcherExclude": {
+    "**/node_modules/**": true
+  },
+  "cSpell.words": ["guopi"]
+}

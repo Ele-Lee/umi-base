@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true,
+    "outDir": "./lib",
+    "lib": ["es5", "dom", "es2015"],
+    "strict": true,
+    "target": "es5",
+    "allowJs": false,
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "jsx": "react"
+  },
+  "lib": ["esnext"],
+
+  "include": ["src/**/*.ts"]
+}

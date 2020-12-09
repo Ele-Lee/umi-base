@@ -1,0 +1,11 @@
+{
+  "name": "@grfe/plugin-micro-layout",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "build": "father-build"
+  },
+  "dependencies":{
+    "@grfe/plugin-sub-utils": "file:../plugin-sub-utils"
+  }
+}

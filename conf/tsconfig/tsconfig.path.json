@@ -1,0 +1,43 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@grfe/plugin-layout-login": [
+        "../../packages/plugin-layout-login/src"
+      ],
+      "@grfe/plugin-layout-login/*": [
+        "../../packages/plugin-layout-login/src/*"
+      ],
+      "@grfe/plugin-layout-login/lib": [
+        "../../packages/plugin-layout-login/src"
+      ],
+      "@grfe/plugin-layout-login/lib/*": [
+        "../../packages/plugin-layout-login/src/*"
+      ],
+      "@grfe/plugin-layout-login/es": [
+        "../../packages/plugin-layout-login/src"
+      ],
+      "@grfe/plugin-layout-login/es/*": [
+        "../../packages/plugin-layout-login/src/*"
+      ],
+      "@grfe/plugin-sub-utils": [
+        "../../packages/plugin-sub-utils/src"
+      ],
+      "@grfe/plugin-sub-utils/*": [
+        "../../packages/plugin-sub-utils/src/*"
+      ],
+      "@grfe/plugin-sub-utils/lib": [
+        "../../packages/plugin-sub-utils/src"
+      ],
+      "@grfe/plugin-sub-utils/lib/*": [
+        "../../packages/plugin-sub-utils/src/*"
+      ],
+      "@grfe/plugin-sub-utils/es": [
+        "../../packages/plugin-sub-utils/src"
+      ],
+      "@grfe/plugin-sub-utils/es/*": [
+        "../../packages/plugin-sub-utils/src/*"
+      ]
+    }
+  }
+}

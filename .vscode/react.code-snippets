@@ -1,0 +1,45 @@
+{
+  "base react component": {
+    "scope": "typescriptreact",
+    "prefix": "rcomp",
+    "body": [
+      "/**",
+      " * $1",
+      " */",
+      "",
+      "import React, { CSSProperties } from 'react';",
+      "",
+      "const $2: React.FC<PropsType> = ({ className, style }) => {",
+      "  return $3;",
+      "};",
+      "",
+      "export default $2;",
+      "",
+      "export interface PropsType {",
+      "  className?: string;",
+      "  style?: CSSProperties;",
+      "}"
+    ],
+    "description": "通用组件模版"
+  },
+  "base react page": {
+    "scope": "typescriptreact",
+    "prefix": "rpage",
+    "body": [
+      "/**",
+      " * $1",
+      " */",
+      "",
+      "import React from 'react';",
+      "",
+      "const $2: React.FC = () => {",
+      "  return $3;",
+      "};",
+      "",
+      "export default $2;",
+      "",
+      "$2.title = \"$3\";"
+    ],
+    "description": "通用页面模版"
+  }
+}
