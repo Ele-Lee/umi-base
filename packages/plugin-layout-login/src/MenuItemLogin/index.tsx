@@ -4,6 +4,7 @@ import { TNodeParams } from '@grfe/plugin-sub-utils/es/typing';
 import { useAuth } from './helpers/useAuth';
 import { Avatar } from 'antd';
 import { LoginItemProps } from 'src/typings';
+import { storageUserInfo } from './helpers/microAction';
 
 const LoginItem: React.FC<LoginItemProps & TNodeParams> = ({
   MenuItem,
@@ -11,8 +12,11 @@ const LoginItem: React.FC<LoginItemProps & TNodeParams> = ({
   MenuSubMenu,
   key,
   headerSubMenuForLogin = [],
+  onGetUserInfoSuc = data => {
+    storageUserInfo(data);
+  },
 }) => {
-  const { user, clearUser } = useAuth();
+  const { user, clearUser } = useAuth(onGetUserInfoSuc);
   const handleLogout = () => {
     clearUser();
   };
@@ -49,4 +53,5 @@ const LoginItem: React.FC<LoginItemProps & TNodeParams> = ({
     </MenuSubMenu>
   );
 };
+
 export default LoginItem;

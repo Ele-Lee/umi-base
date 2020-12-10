@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { redirectLogin } from '@grfe/utils/dist/tool';
-import microStore from '@grfe/micro-store';
 import { UserInfo } from './typing';
-import { keyForStorageAuth } from './constant';
 // import { setUserInfo } from '../../../utils/microInit';
 
 const apiUrl = '/portalapi/api/1/auth/portal_profile_info?app=portal';
@@ -53,13 +51,7 @@ const sto = {
   get: (key = 'redirectTime') => Number(sessionStorage.getItem(key)),
 };
 
-export function getUesrInfo() {
-  // todo
-  new microStore({ state: Object.freeze({}), name: keyForStorageAuth });
-  return null;
-}
-
-export function useAuth() {
+export function useAuth(onCb: (u: UserInfo) => void) {
   const [user, setUser] = useState<null | UserInfo>(null);
   useEffect(() => {
     sto.set();
@@ -71,9 +63,10 @@ export function useAuth() {
         return;
       }
       setUser(res);
-      // setUserInfo(res);
 
-      new microStore({ state: Object.freeze(res), name: keyForStorageAuth });
+      if (typeof onCb === 'function') {
+        onCb(res);
+      }
     });
   }, []);
   return {

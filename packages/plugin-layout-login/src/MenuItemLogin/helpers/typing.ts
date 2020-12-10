@@ -9,12 +9,12 @@ export interface UserInfo {
   status: number;
   has_change_password: boolean;
   portal_role: number[];
-  user_role: Userrole[];
+  user_role: UserRole[];
   master_id: number;
   permission: string[];
 }
 
-interface Userrole {
+interface UserRole {
   role_id: number;
   role_name: string;
 }

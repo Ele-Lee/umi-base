@@ -8,7 +8,6 @@ export default (
 ) => `
 const LoginItemFC$ = require("${path}").default
 
-
 export const LoginItemFC = (props) => LoginItemFC$(Object.assign(props, { headerSubMenuForLogin: ${
   absPathMap.headerSubMenuForLogin
     ? 'require("' + absPathMap.headerSubMenuForLogin + '").default'

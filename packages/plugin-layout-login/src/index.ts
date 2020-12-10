@@ -1,10 +1,11 @@
 import { utils } from 'umi';
 import { IApi } from '@umijs/types';
-import { existsSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import getLoginContent from './utils/getLoginContent';
+import { keyForStorageAuth } from './MenuItemLogin/helpers/constant';
 
-const { winPath } = utils;
+const { winPath, Mustache } = utils;
 
 const DIR_NAME = 'elelee-layout-login';
 
@@ -44,12 +45,21 @@ export default function(api: IApi) {
         // {},
       ),
     });
+
+    const infoActionTpl = readFileSync(join(__dirname, './utils/infoAction.tpl'), 'utf-8');
+    api.writeTmpFile({
+      path: `${DIR_NAME}/infoAction.tsx`,
+      content: Mustache.render(infoActionTpl, {
+        keyForStorageAuth,
+      }),
+    });
   });
 
   api.addUmiExports(() => {
     return {
-      source: winPath(`../${DIR_NAME}/MenuItemLogin`),
-      specifiers: ['MenuItemLogin'],
+      source: winPath(`../${DIR_NAME}/infoAction`),
+      // source: `../${DIR_NAME}/infoAction`,
+      // specifiers: ['getUserInfo'],
       exportAll: true,
     };
   });

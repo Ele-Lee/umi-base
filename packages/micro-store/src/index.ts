@@ -13,7 +13,7 @@ class MicroStorage {
   private busInstance: Bus | null = null;
 
   constructor(option: InitializeOption) {
-    const { isMain, state, name = '' } = option;
+    const { isMain, state, name = '', isReset } = option;
     if (this.isParentWindow() && isMain) {
       assert(
         isMain && !name,
@@ -26,7 +26,7 @@ class MicroStorage {
       assert(name, '子应用命名空间不能为空');
       this.namespace = name;
     }
-    this.initStorageObj(this.namespace, state);
+    this.initStorageObj(this.namespace, state || {}, !!isReset);
     this.initEventBus();
   }
 
@@ -52,7 +52,7 @@ class MicroStorage {
     return moduleModel;
   }
 
-  get(selector: SelectorParams) {
+  get(selector?: SelectorParams) {
     if (typeof selector === 'string') {
       if (/^\w+\/$/.test(selector)) {
         return this.getCacheInstance().get(selector.slice(0, -1));
@@ -64,20 +64,22 @@ class MicroStorage {
         } else {
           _selector = selector;
         }
-        console.log('%celelee test:', 'background:#000;color:#fff', 222, _selector);
         return myGet(this.getCacheInstance().getStorage(), _selector);
       }
       assert(/^\w+$/.test(selector), '当前模块的Key有误', selector);
       const moduleModel = this.getCacheInstance().get(this.namespace);
       return moduleModel[selector];
+    } else if (typeof selector === 'function') {
+      return selector(this.getCacheInstance().getStorage());
     }
-    return selector(this.getCacheInstance().getStorage());
+    return this.getCacheInstance().get(this.namespace);
   }
 
-  getNameList() {
+  getModulesList() {
     return Object.keys(this.getCacheInstance().getStorage());
   }
-  getModulesKeys() {
+
+  getCurModulesKeys() {
     return Object.keys(this.getCacheInstance().get(this.namespace));
   }
 
@@ -140,11 +142,11 @@ class MicroStorage {
     this.busInstance = win[eventBusKeyOnWindow];
   }
 
-  private initStorageObj(name: string, initialData: object) {
+  private initStorageObj(name: string, initialData: object, isReset: boolean) {
     assert(name, '模块名有误');
     assert(isObject(initialData), '初始化模块必须用对象');
     const win = this.getParentWindow();
-    if (!win[storageCacheInsOnWindow]) {
+    if (!Reflect.has(win, storageCacheInsOnWindow)) {
       const cacheIns = new MicroCache({ [name]: initialData });
       Object.defineProperty(win, storageCacheInsOnWindow, {
         value: cacheIns,
@@ -152,7 +154,8 @@ class MicroStorage {
         enumerable: false,
       });
     } else {
-      win[storageCacheInsOnWindow].set(name, initialData);
+      const fnType = isReset ? 'set' : 'merge';
+      win[storageCacheInsOnWindow][fnType](name, initialData);
     }
 
     this.cacheInstance = win[storageCacheInsOnWindow];

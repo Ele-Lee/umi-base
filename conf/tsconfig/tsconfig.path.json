@@ -2,6 +2,24 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "paths": {
+      "@grfe/micro-store": [
+        "../../packages/micro-store/src"
+      ],
+      "@grfe/micro-store/*": [
+        "../../packages/micro-store/src/*"
+      ],
+      "@grfe/micro-store/lib": [
+        "../../packages/micro-store/src"
+      ],
+      "@grfe/micro-store/lib/*": [
+        "../../packages/micro-store/src/*"
+      ],
+      "@grfe/micro-store/es": [
+        "../../packages/micro-store/src"
+      ],
+      "@grfe/micro-store/es/*": [
+        "../../packages/micro-store/src/*"
+      ],
       "@grfe/plugin-layout-login": [
         "../../packages/plugin-layout-login/src"
       ],
@@ -19,6 +37,24 @@
       ],
       "@grfe/plugin-layout-login/es/*": [
         "../../packages/plugin-layout-login/src/*"
+      ],
+      "@grfe/plugin-micro-layout": [
+        "../../packages/plugin-mlayout/src"
+      ],
+      "@grfe/plugin-micro-layout/*": [
+        "../../packages/plugin-mlayout/src/*"
+      ],
+      "@grfe/plugin-micro-layout/lib": [
+        "../../packages/plugin-mlayout/src"
+      ],
+      "@grfe/plugin-micro-layout/lib/*": [
+        "../../packages/plugin-mlayout/src/*"
+      ],
+      "@grfe/plugin-micro-layout/es": [
+        "../../packages/plugin-mlayout/src"
+      ],
+      "@grfe/plugin-micro-layout/es/*": [
+        "../../packages/plugin-mlayout/src/*"
       ],
       "@grfe/plugin-sub-utils": [
         "../../packages/plugin-sub-utils/src"

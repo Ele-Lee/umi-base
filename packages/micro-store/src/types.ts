@@ -39,7 +39,8 @@ export type WindowIndex = (Window & typeof globalThis) | Window;
 export interface InitializeOption {
   isMain?: boolean;
   name?: InitializeOption['isMain'] extends true ? undefined : string;
-  state: object;
+  state?: object;
+  isReset?: boolean;
 }
 
 type StandardObj = { [key: string]: any };
