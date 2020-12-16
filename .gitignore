@@ -14,7 +14,7 @@
 .DS_Store
 
 # umi
-/.umi
+.umi
 **/.umi
 /src/.umi-production
 /src/.umi-test
