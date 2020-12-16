@@ -5,13 +5,7 @@ import * as umiExports from './umiExports';
 import { plugin } from './plugin';
 
 export function getRoutes() {
-  const routes = [
-  {
-    "path": "/",
-    "component": require('@/pages/index').default,
-    "exact": true
-  }
-];
+  const routes = [];
 
   // allow user to extend routes
   plugin.applyPlugins({

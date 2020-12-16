@@ -1,0 +1,25 @@
+{
+  "name": "subapp1",
+  "private": true,
+  "scripts": {
+    "start": "PORT=8100 umi dev"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@grfe/micro-store": "file:../../packages/micro-store",
+    "@umijs/preset-react": "1.x",
+    "@umijs/plugin-qiankun": "^2.18.2"
+  },
+  "devDependencies": {
+  }
+}

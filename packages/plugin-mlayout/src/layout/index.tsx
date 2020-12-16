@@ -5,10 +5,10 @@ import { Layout } from 'antd';
 import _omit from 'lodash/omit';
 import { HeaderMenuItem, ItemFC } from '@grfe/plugin-sub-utils/es/typing';
 import LayoutMenu from '../components/LayoutMenu';
-import iconFormatter from '../utils/iconFormatter';
 import { MenuConfig, IUserConfig } from '../typings';
 import PublicHeader from '../components/PublicHeader';
 import './style.less';
+import { findActiveSubMenu, renderMenuListHandler } from './helper/utils';
 
 const { Content } = Layout;
 const headerHeight = 60;
@@ -62,11 +62,11 @@ function BaseLayout({
   const [menuRoutes, setMenuRoutes] = useState<MenuConfig[]>([]);
 
   useEffect(() => {
-    if (!isMainApp) {
+    if (!isMainApp && Array.isArray(menuConfig)) {
       setMenuRoutes(menuConfig);
       return;
     }
-    if (menus) {
+    if (Array.isArray(menus)) {
       setMenuRoutes(menus);
     }
   }, [menus, menuConfig]);
@@ -90,40 +90,12 @@ function BaseLayout({
         />
       )}
       <Layout className="site-layout">
-        {/* TODO */}
         {!hideSideMenu && (
           <LayoutMenu
             selectedKey={menuItemKey}
-            headerHeight={headerHeight}
             activeSubMenu={activeSubMenu}
-            menuItemList={(LayoutMenuItem, SubMenu) => {
-              function renderItemByItem(routesArr: any[], pathPrefix = '/') {
-                return routesArr.map(({ name, title, icon, path, children }) => {
-                  const menuProps = {
-                    key: pathPrefix + path,
-                    icon:
-                      typeof icon === 'string'
-                        ? React.createElement(iconFormatter(icon))
-                        : undefined,
-                    title: title,
-                  };
-                  menuProps.key = menuProps.key.replace(/\/{2,}/g, '/');
-
-                  if (Array.isArray(children)) {
-                    return (
-                      <SubMenu {...menuProps}>{renderItemByItem(children, menuProps.key)}</SubMenu>
-                    );
-                  }
-                  return (
-                    <LayoutMenuItem {...menuProps}>
-                      {title}
-                      {/* 使用key作为跳转路径 */}
-                      <Link to={menuProps.key}></Link>
-                    </LayoutMenuItem>
-                  );
-                });
-              }
-              return renderItemByItem(menuRoutes);
+            renderMenuList={menuObjParams => {
+              return renderMenuListHandler(menuRoutes, menuObjParams);
             }}
             onMenuClick={({ key }) => {
               let _key = String(key);
@@ -158,25 +130,6 @@ function BaseLayout({
 //   return void 0;
 // }
 
-function findActiveSubMenu($pathname: string, $routesConfig: any[]): string | undefined {
-  if ($pathname === '/') return $pathname;
-
-  let activeSubMenu: string | undefined = undefined;
-
-  for (const iterator of $routesConfig) {
-    const { children, name, path, title } = iterator;
-
-    activeSubMenu = name ? '/' + name : path;
-    if (Array.isArray(children) && children.some(item => item.path === activeSubMenu)) {
-      break;
-    }
-    if ($pathname === `/${name}` || $pathname === path) {
-      activeSubMenu = $pathname;
-    }
-  }
-  return activeSubMenu;
-}
-
 const __connect = connect
   ? connect
   : (props: any) => {
@@ -189,6 +142,5 @@ export default __connect(({ microLayout }: { microLayout: MainAppModelState }) =
   if (microLayout) {
     return { menus: microLayout.menus, apps: microLayout.apps };
   }
-  console.error('no microLayout in main app dva');
   return {};
 })(BaseLayout);

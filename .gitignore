@@ -14,13 +14,14 @@
 .DS_Store
 
 # umi
-/src/.umi
+/.umi
+**/.umi
 /src/.umi-production
 /src/.umi-test
 /.env.local
 
-**/example/**
+# **/example/**
 
-**/example/
+# **/example/
 **/es/
 **/lib/

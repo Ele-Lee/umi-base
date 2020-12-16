@@ -26,10 +26,11 @@
       "git add"
     ]
   },
-  "dependencies":{
-    "js-cookie": "^2.2.1",
+  "dependencies": {
     "@grfe/micro-store": "file:../micro-store",
-    "@grfe/plugin-sub-utils": "file:../plugin-sub-utils"
+    "@grfe/plugin-sub-utils": "file:../plugin-sub-utils",
+    "@umijs/plugin-qiankun": "^2.18.2",
+    "js-cookie": "^2.2.1"
   },
   "devDependencies": {
     "@types/jest": "^25.1.3",
