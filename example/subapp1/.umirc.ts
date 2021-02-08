@@ -37,12 +37,12 @@ export default defineConfig({
   //   'micro-layout': 'micro-layout',
   //   '../../micro-layout/lib': '../../micro-layout/lib',
   // },
-  headScripts: [
-    {
-      src: 'https://static.guorou.net/lib/micro_store@0.0.1-beta2.js',
-      ingore: true,
-    },
-  ],
+  // headScripts: [
+  //   {
+  //     src: 'https://static.guorou.net/lib/micro_store@0.0.1-beta2.js',
+  //     ingore: true,
+  //   },
+  // ],
   proxy: {
     '/portalapi': {
       target: 'http://portal.test.guorou.net',

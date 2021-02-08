@@ -32,12 +32,39 @@ export const qiankun = getMenuFromConfigTB().then(res => {
       {
         name: 'subapp2', // 唯一 id
         entry: '//localhost:8200', // html entry
+      },
+      {
+        name: 'course_portal', // 唯一 id
+        entry: '//localhost:3000', // html entry
         props: {
-          test: 2,
+          isInMain: 1,
         },
+        activeRule: '/portal',
+        // mountElementId: 'portal-root',
+        // base: '/portal',
       },
     ],
+    customImportConfig: {
+      fetch(url, ...args) {
+        console.log('%celelee test:', 'background:#000;color:#fff', 32);
+        if (url === 'http://to-be-replaced.js')
+          return {
+            async text() {
+              return '';
+            },
+          };
+
+        return window.fetch(url, ...args);
+      },
+    },
     routes: [
+      {
+        path: '/portal',
+        microApp: 'course_portal',
+        microAppProps: {
+          autoSetLoading: true,
+        },
+      },
       {
         path: '/subapp1',
         microApp: 'subapp1',

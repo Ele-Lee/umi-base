@@ -38,12 +38,14 @@ export default defineConfig({
 
   plugins: ['../../packages/plugin-layout-login/lib', '../../packages/plugin-mlayout/lib'],
 
+  runtimePublicPath: false,
   qiankun: {
     master: {
       // 注册子应用信息
-      apps: apps.map(item => ({ name: item.name, entry: item.entry_dev })),
+      // apps: apps.map(item => ({ name: item.name, entry: item.entry_dev })),
 
-      sandbox: { strictStyleIsolation: true },
+      sandbox: { experimentalStyleIsolation: true },
+      // sandbox: {},
       prefetch: 'all',
     },
   },
@@ -83,6 +85,10 @@ export default defineConfig({
   proxy: {
     '/portalapi': {
       target: 'http://portal.test.guorou.net',
+      changeOrigin: true,
+    },
+    '/portal': {
+      target: 'http://localhost:3000',
       changeOrigin: true,
     },
     '/phome': {

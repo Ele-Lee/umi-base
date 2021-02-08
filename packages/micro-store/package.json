@@ -10,7 +10,7 @@
   "scripts": {
     "build:tsc": "tsc --outDir es",
     "build:rollup": "rm -rf ./lib && rollup -c",
-    "build": "yarn build:rollup && build:tsc"
+    "build": "yarn build:rollup && yarn build:tsc"
   },
   "dependencies": {
     "@umijs/plugin-qiankun": "^2.18.2"

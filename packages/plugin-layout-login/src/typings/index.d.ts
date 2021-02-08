@@ -6,12 +6,3 @@ export interface LoginItemProps {
   headerSubMenuForLogin?: any[];
   onGetUserInfoSuc: (UserInfo) => void;
 }
-
-// export declare const LoginItem: React.FC<LoginItemProps & TNodeParams>;
-// export declare const getUserInfo: Function;
-
-// declare module '@@/elelee-layout-login/MenuItemLogin' {
-//   const LoginItem: React.FC<LoginItemProps & TNodeParams>;
-//   const getUserInfo: Function;
-//   export default LoginItem;
-// }

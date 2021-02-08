@@ -86,7 +86,7 @@ const MainAppModel: IMainAppModel = {
               },
               {
                 title: 'dashboard',
-                path: '/dashboard',
+                path: 'portal/dashboard/user-search',
               },
               {
                 title: 'subapp2',
