@@ -99,5 +99,9 @@ export default defineConfig({
       target: 'http://portalhome.uae.shensz.local',
       changeOrigin: true,
     },
+    '/pauthapi': {
+      target: 'http://portalhome.uae.shensz.local',
+      changeOrigin: true,
+    },
   },
 });
