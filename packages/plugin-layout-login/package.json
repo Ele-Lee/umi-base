@@ -29,7 +29,6 @@
   "dependencies": {
     "@grfe/micro-store": "file:../micro-store",
     "@grfe/plugin-sub-utils": "file:../plugin-sub-utils",
-    "@umijs/plugin-qiankun": "^2.18.2",
     "js-cookie": "^2.2.1"
   },
   "devDependencies": {

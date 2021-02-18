@@ -6,7 +6,6 @@
     "build": "father-build"
   },
   "dependencies": {
-    "@grfe/plugin-sub-utils": "file:../plugin-sub-utils",
-    "@umijs/plugin-qiankun": "^2.18.2"
+    "@grfe/plugin-sub-utils": "file:../plugin-sub-utils"
   }
 }

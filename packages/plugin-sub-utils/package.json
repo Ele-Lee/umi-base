@@ -10,6 +10,5 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@umijs/plugin-qiankun": "^2.18.2"
   }
 }

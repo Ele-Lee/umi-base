@@ -12,11 +12,7 @@
     "build:rollup": "rm -rf ./lib && rollup -c",
     "build": "yarn build:rollup && yarn build:tsc"
   },
-  "dependencies": {
-    "@umijs/plugin-qiankun": "^2.18.2"
-  },
   "devDependencies": {
-    "@grfe/npmrc": "^0.1.0",
     "ali-oss": "^6.10.0",
     "husky": "^4.2.5",
     "recursive-readdir": "^2.2.2",
