@@ -1,5 +1,5 @@
 import { Reducer, Subscription, Action } from 'umi';
-import MicroStorage from '@grfe/micro-store';
+import MicroStore from '@grfe/micro-store';
 import { omitByKey } from '@/utils/recursive';
 import _cloneDeep from 'lodash/cloneDeep';
 import { MenuConfig, AppOption } from '@grfe/micro-layout/lib/typings/typing';
@@ -106,7 +106,7 @@ const MainAppModel: IMainAppModel = {
       apps.forEach(({ name }) => {
         menus[name] = [];
       });
-      const ss = new MicroStorage({
+      const ss = new MicroStore({
         state: {
           menus,
         },

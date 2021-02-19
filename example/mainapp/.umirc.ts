@@ -80,7 +80,7 @@ export default defineConfig({
   //     },
   //   ],
   // ],
-  favicon: 'https://p.geitu.net/15/6ggS9_.jpg?x-oss-process=image/resize,w_256,limit_1',
+  // favicon: 'https://p.geitu.net/15/6ggS9_.jpg?x-oss-process=image/resize,w_256,limit_1',
   // favicon: 'https://i.52112.com/icon/jpg/256/20190116/28061/1395736.jpg',
   proxy: {
     '/portalapi': {

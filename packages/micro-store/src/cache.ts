@@ -1,6 +1,6 @@
 import { CacheInterface, keyInterface, ModuleObj, OnChangeFn } from './types';
 import hash from './hash';
-import { isObject, assert } from './util';
+// import { isObject, assert } from './util';
 
 let uid = 0;
 
@@ -169,14 +169,15 @@ export default class MicroCache implements CacheInterface {
     return this.__cache[_key];
   }
 
-  merge(key: keyInterface, value: object) {
-    const [_key] = this.serializeKey(key);
-    assert(isObject(value), 'merge: value不是Object');
-    Object.entries(value).forEach(([itemKey, itemValue]) => {
-      this.__cache[_key][itemKey] = observe(itemValue);
-    });
-    return this.__cache[_key];
-  }
+  // merge(key: keyInterface, value: object) {
+  //   const [_key] = this.serializeKey(key);
+  //   console.log('%celelee test:', 'background:#000;color:#2ff', key, value);
+  //   assert(isObject(value), 'merge: value不是Object');
+  //   Object.entries(value).forEach(([itemKey, itemValue]) => {
+  //     this.__cache[_key][itemKey] = observe(itemValue);
+  //   });
+  //   return this.__cache[_key];
+  // }
 
   set(key: keyInterface, value: any): any {
     const [_key] = this.serializeKey(key);

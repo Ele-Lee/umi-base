@@ -1,4 +1,4 @@
-import { storageKeyOnWindow, eventBusKeyOnWindow, storageCacheInsOnWindow } from './constant';
+import { eventBusKeyOnWindow, storageCacheInsOnWindow } from './constant';
 import MicroCache from './cache';
 import Bus from './bus';
 
@@ -28,7 +28,6 @@ export interface EventBusInterface {
 
 declare global {
   interface Window {
-    [storageKeyOnWindow]: ModuleObj;
     [eventBusKeyOnWindow]: Bus;
     [storageCacheInsOnWindow]: MicroCache;
   }
@@ -40,7 +39,7 @@ export interface InitializeOption {
   isMain?: boolean;
   name?: InitializeOption['isMain'] extends true ? undefined : string;
   state?: object;
-  isReset?: boolean;
+  isMerge?: boolean;
 }
 
 type StandardObj = { [key: string]: any };

@@ -17,7 +17,6 @@ const defaultImgLogo =
 
 interface BaseLayoutProps extends IRouteComponentProps {
   menus: MenuConfig[];
-  // apps: AppOption[];
   userConfig: IUserConfig;
   userComp: {
     headerMenu?: Array<HeaderMenuItem>;
@@ -34,7 +33,6 @@ function BaseLayout({
   // history,
   // match,
   menus,
-  // apps = [],
   userConfig,
   userComp = {},
   hideHeader,
@@ -140,7 +138,7 @@ const __connect = connect
 
 export default __connect(({ microLayout }: { microLayout: MainAppModelState }) => {
   if (microLayout) {
-    return { menus: microLayout.menus, apps: microLayout.apps };
+    return { menus: microLayout.menus };
   }
   return {};
 })(BaseLayout);

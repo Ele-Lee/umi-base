@@ -10,17 +10,17 @@ TODO   --->  uploadTOss 脚本
 ### 开始使用
 ```js
 // 主应用
-const ss = new MicroStorage({ state, isMain: true })
+const ss = new MicroStore({ state, isMain: true })
 // 子应用
-const ss = new MicroStorage({ state, name: 'subapp1' })
+const ss = new MicroStore({ state, name: 'subapp1' })
 ```
 
 ### 开始使用
 ```js
 // 主应用, 只需要设置isMain，会校验是不是最高级的window
-const s1 = new MicroStorage({ state, isMain: true, state: { mainVal: 1 } }) 
+const s1 = new MicroStore({ state, isMain: true, state: { mainVal: 1 } }) 
 // 子应用，需要起应用名
-const ss = new MicroStorage({ state, name: 'subapp1', state: { subVal: 2, obj: { b: 2 } } })
+const ss = new MicroStore({ state, name: 'subapp1', state: { subVal: 2, obj: { b: 2 } } })
 ```
 
 ### 功能

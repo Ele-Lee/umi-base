@@ -1,9 +1,9 @@
 import { Reducer, Subscription, Action } from 'umi';
-import MicroStorage from '@grfe/micro-store';
-import { omitByKey } from '@/utils/recursive';
+// import MicroStore from '@grfe/micro-store';
+// import { omitByKey } from '@/utils/recursive';
 import _cloneDeep from 'lodash/cloneDeep';
 import { MenuConfig, AppOption } from '@grfe/micro-layout/lib/typings/typing';
-import { apps, menus as originMenus } from '../../config';
+// import { apps, menus as originMenus } from '../../config';
 import { getMenuFromConfigTB } from '@/services/menu';
 
 export type MainAppModelState = {

@@ -44,19 +44,18 @@ export const qiankun = getMenuFromConfigTB().then(res => {
         // base: '/portal',
       },
     ],
-    customImportConfig: {
-      fetch(url, ...args) {
-        console.log('%celelee test:', 'background:#000;color:#fff', 32);
-        if (url === 'http://to-be-replaced.js')
-          return {
-            async text() {
-              return '';
-            },
-          };
+    // customImportConfig: {
+    //   fetch(url, ...args) {
+    //     if (url === 'http://to-be-replaced.js')
+    //       return {
+    //         async text() {
+    //           return '';
+    //         },
+    //       };
 
-        return window.fetch(url, ...args);
-      },
-    },
+    //     return window.fetch(url, ...args);
+    //   },
+    // },
     routes: [
       {
         path: '/portal',

@@ -5,15 +5,13 @@ import { eventBusKeyOnWindow, storageCacheInsOnWindow, completeValuePathReg } fr
 import { MAIN_APP } from './constant';
 import Bus from './bus';
 
-class MicroStorage {
-  // private namespaceList: string[] = [];
+class MicroStore {
   private namespace: string = '';
-  // private hadInit: boolean = false;
   private cacheInstance: MicroCache | null = null;
   private busInstance: Bus | null = null;
 
   constructor(option: InitializeOption) {
-    const { isMain, state, name = '', isReset } = option;
+    const { isMain, state, name = '', isMerge } = option;
     if (this.isParentWindow() && isMain) {
       assert(
         isMain && !name,
@@ -26,7 +24,7 @@ class MicroStorage {
       assert(name, '子应用命名空间不能为空');
       this.namespace = name;
     }
-    this.initStorageObj(this.namespace, state || {}, !!isReset);
+    this.initStorageObj(this.namespace, state || {}, !!isMerge);
     this.initEventBus();
   }
 
@@ -41,7 +39,8 @@ class MicroStorage {
    * @param value
    */
   set(nameAndKey: string, value: any) {
-    assert(nameAndKey, '必须传一个key');
+    assert(typeof nameAndKey === 'string', '必须传一个key字符');
+    assert(MAIN_APP !== nameAndKey, '不能使用主应用关键字');
     const keyArr = nameAndKey.split(/\.|\//);
     assert(checkPathArr(keyArr), '输入的改值路径有误', keyArr);
     if (/^\w+\.|\/\w+/.test(nameAndKey)) {
@@ -83,10 +82,15 @@ class MicroStorage {
     return Object.keys(this.getCacheInstance().get(this.namespace));
   }
 
-  clear(moduleKey: string) {
-    const isMainApp = moduleKey !== MAIN_APP;
-    assert(isMainApp, '不能清空main app的存储');
-    this.getCacheInstance().clear(moduleKey);
+  clear(moduleKey: string = this.namespace) {
+    assert(moduleKey !== MAIN_APP, '不能清空main app的存储');
+    if (this.namespace === MAIN_APP) {
+      assert(moduleKey, '需要传入命名空间');
+      this.getCacheInstance().clear(moduleKey);
+    } else {
+      assert(moduleKey === this.namespace, '子应用只能清除自己的命名空间');
+      this.getCacheInstance().clear(this.namespace);
+    }
     return this.getCacheInstance().getStorage();
   }
 
@@ -142,7 +146,7 @@ class MicroStorage {
     this.busInstance = win[eventBusKeyOnWindow];
   }
 
-  private initStorageObj(name: string, initialData: object, isReset: boolean) {
+  private initStorageObj(name: string, initialData: object, isMerge: boolean) {
     assert(name, '模块名有误');
     assert(isObject(initialData), '初始化模块必须用对象');
     const win = this.getParentWindow();
@@ -154,8 +158,14 @@ class MicroStorage {
         enumerable: false,
       });
     } else {
-      const fnType = isReset ? 'set' : 'merge';
-      win[storageCacheInsOnWindow][fnType](name, initialData);
+      // const fnType = isMerge ? 'merge' : 'set';
+      // console.log(
+      //   '%celelee test:',
+      //   'background:#000;color:#fff',
+      //   win[storageCacheInsOnWindow],
+      //   fnType,
+      // );
+      win[storageCacheInsOnWindow]['set'](name, initialData);
     }
 
     this.cacheInstance = win[storageCacheInsOnWindow];
@@ -172,4 +182,4 @@ class MicroStorage {
   }
 }
 
-export default MicroStorage;
+export default MicroStore;
