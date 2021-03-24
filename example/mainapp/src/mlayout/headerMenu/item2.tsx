@@ -5,10 +5,9 @@ const a = () => {
   const [customDom, setCustomDom] = useState(null);
 
   useEffect(() => {
-    const store = new MicroStore({ name: 'tes', state: {} });
+    const store = new MicroStore({ isMain: true, state: {} });
     store.on('subapp1_mounted', () => {
       const data = store.get('subapp1/');
-      console.log('%celelee test:', 'background:#000;color:#fff', 11, data.comp);
       setCustomDom(data.comp);
     });
     //       setTimeout(() => {

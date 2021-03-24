@@ -1,6 +1,6 @@
 {
   "name": "@grfe/plugin-sub-utils",
-  "version": "0.0.1",
+  "version": "0.0.2-beta0.0",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-  }
+  "license": "ISC"
 }

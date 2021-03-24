@@ -1,27 +1,7 @@
 import { defineConfig } from 'umi';
 // @ts-ignore
 // import getSymlinks from 'get-symlinks';
-import * as fs from 'fs';
 import pkg from './package.json';
-
-const apps = [
-  {
-    title: '子应用Aitem1',
-    name: 'subapp1',
-    path: 'subapp1/',
-    entry_dev: '//localhost:8100',
-    icon: 'UserOutlined',
-    prefetch: true,
-  },
-  {
-    title: '子应用B',
-    name: 'subapp2',
-    path: 'subapp2/',
-    entry_dev: '//localhost:8200',
-    icon: 'UserOutlined',
-    prefetch: true,
-  },
-];
 
 export default defineConfig({
   base: '/' + pkg.name,
@@ -33,6 +13,12 @@ export default defineConfig({
   },
   mlayout: {
     // routesConfig,
+    menus: [
+      {
+        title: 'test2',
+        path: '/test2',
+      },
+    ],
     injectMenuPlugin: ['@@/elelee-layout-login/MenuItemLogin'],
   },
 
@@ -84,7 +70,7 @@ export default defineConfig({
   // favicon: 'https://i.52112.com/icon/jpg/256/20190116/28061/1395736.jpg',
   proxy: {
     '/portalapi': {
-      target: 'http://portal.test.guorou.net',
+      target: 'http://portalhome.uae.shensz.local',
       changeOrigin: true,
     },
     '/portal': {

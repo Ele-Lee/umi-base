@@ -39,7 +39,7 @@ async function fetchPortalAuth(): Promise<UserInfo | null> {
     }
     return user;
   } catch (error) {
-    console.error(error);
+    console.error('fetchPortalAuth 错误：', error);
     return null;
   }
 }
@@ -55,20 +55,23 @@ export function useAuth(onCb: (u: UserInfo) => void) {
   const [user, setUser] = useState<null | UserInfo>(null);
   useEffect(() => {
     sto.set();
-    fetchPortalAuth().then(res => {
-      let remainingTime = sto.get();
-      if (remainingTime <= 0) return;
-      if (!res) {
-        redirectLogin();
-        return;
-      }
-      setUser(res);
+    setTimeout(() => {
+      fetchPortalAuth().then(res => {
+        let remainingTime = sto.get();
+        if (remainingTime <= 0) return;
+        if (!res) {
+          redirectLogin();
+          return;
+        }
+        setUser(res);
 
-      if (typeof onCb === 'function') {
-        onCb(res);
-      }
-    });
+        if (typeof onCb === 'function') {
+          onCb(res);
+        }
+      });
+    }, 1000);
   }, []);
+
   return {
     user,
     clearUser() {

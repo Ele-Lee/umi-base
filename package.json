@@ -1,6 +1,6 @@
 {
   "name": "portal_micro_base",
-  "version": "0.0.1",
+  "version": "0.0.1-beta1",
   "private": true,
   "workspaces": {
     "packages": [
@@ -10,6 +10,10 @@
     ],
     "nohoist": []
   },
+  "repository": "http://git.shensz.local/Ele_Lee/portal_micro_base/",
+  "publishConfig": {
+    "registry": "http://r.npm.guorou.net"
+  },
   "scripts": {
     "dev:main": "lerna exec --scope=mainapp -- yarn start",
     "dev:sub1": "lerna exec --scope=subapp1 -- yarn start",
@@ -18,7 +22,9 @@
     "build:pkg": "lerna run build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "alias:ts": "node ./scripts/ts-paths"
+    "alias:ts": "node ./scripts/ts-paths",
+    "release": "glerna publish",
+    "release-force": "glerna publish --force-publish"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -33,16 +39,17 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^5.0.12",
+    "@grfe/lerna": "^0.2.12",
     "@grfe/utils": "^0.3.25",
-    "@umijs/preset-react": "1.x",
     "@umijs/plugin-qiankun": "^2.18.2",
-    "umi": "3.2.28",
+    "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.28",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "styled-components": "^5.1.1",
+    "umi": "3.2.28",
     "yorkie": "^2.0.0"
   },
   "devDependencies": {

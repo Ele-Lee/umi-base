@@ -2,7 +2,8 @@
   "name": "mainapp",
   "private": true,
   "scripts": {
-    "start": "PORT=8000 umi dev"
+    "start": "PORT=8000 umi dev",
+    "build": "umi build"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -17,7 +18,8 @@
   },
   "dependencies": {
     "@grfe/micro-store": "file:../../packages/micro-store",
-    "@umijs/preset-react": "1.x",
-    "@umijs/plugin-qiankun": "^2.18.2"
-  }
+    "@umijs/plugin-qiankun": "^2.18.2",
+    "@umijs/preset-react": "1.x"
+  },
+  "version": "0.0.2-beta0.0"
 }

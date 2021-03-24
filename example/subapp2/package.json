@@ -17,9 +17,8 @@
   },
   "dependencies": {
     "@grfe/micro-store": "file:../../packages/micro-store",
-    "@umijs/preset-react": "1.x",
-    "@umijs/plugin-qiankun": "^2.18.2"
+    "@umijs/plugin-qiankun": "^2.18.2",
+    "@umijs/preset-react": "1.x"
   },
-  "devDependencies": {
-  }
+  "version": "0.0.2-beta0.0"
 }

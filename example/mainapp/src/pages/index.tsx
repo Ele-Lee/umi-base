@@ -20,8 +20,8 @@ export default () => {
   useEffect(() => {
     setTimeout(() => {
       const uinfo = getUserInfo();
-      console.log('%celelee test:', 'background:#000;color:#fff', uinfo);
-      console.log('%celelee test:', 'background:#000;color:#fff', typeof uinfo);
+      // console.log('%celelee test:', 'background:#000;color:#fff', uinfo);
+      // console.log('%celelee test:', 'background:#000;color:#fff', typeof uinfo);
     }, 0);
   }, []);
 
