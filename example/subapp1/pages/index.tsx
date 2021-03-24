@@ -7,7 +7,15 @@ const Home = props => {
     const state = {
       subapp1Data: 44,
       obj: { a: 1 },
-      comp: <span>test comp</span>,
+      comp: (
+        <span
+          onClick={() => {
+            console.log('%celelee test:', 'background:#000;color:#fff', 11);
+          }}
+        >
+          sub1 comp
+        </span>
+      ),
     };
     // const state2 = {
     //   subapp1Data: 88,

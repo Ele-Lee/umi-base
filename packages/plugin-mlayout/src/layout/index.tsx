@@ -17,6 +17,7 @@ const defaultImgLogo =
 
 interface BaseLayoutProps extends IRouteComponentProps {
   menus: MenuConfig[];
+  headerTitle: string;
   userConfig: IUserConfig;
   userComp: {
     headerMenu?: Array<HeaderMenuItem>;
@@ -24,6 +25,10 @@ interface BaseLayoutProps extends IRouteComponentProps {
   };
   hideHeader?: boolean;
   hideSideMenu?: boolean;
+  umircConfig?: {
+    headerTitle?: string;
+    menus?: MenuConfig[];
+  };
 }
 
 function BaseLayout({
@@ -32,7 +37,9 @@ function BaseLayout({
   // route,
   // history,
   // match,
-  menus,
+  umircConfig,
+  menus: menusFromDva,
+  headerTitle: headerTitleFromDva,
   userConfig,
   userComp = {},
   hideHeader,
@@ -40,10 +47,13 @@ function BaseLayout({
 }: BaseLayoutProps) {
   const {
     menuConfig,
-    headerTitle = '果肉运营后台基座',
+    headerTitle: headerTitleFromConfig,
     headerLogo = defaultImgLogo,
     globalHeaderHeight = headerHeight,
   } = userConfig;
+  const menus = menusFromDva || umircConfig?.menus;
+  const headerTitle =
+    headerTitleFromDva || umircConfig?.headerTitle || headerTitleFromConfig || '果肉运营后台基座';
   const { headerMenu = [], pluginItems = [] } = userComp;
 
   const curPathname = location.pathname;
@@ -138,7 +148,7 @@ const __connect = connect
 
 export default __connect(({ microLayout }: { microLayout: MainAppModelState }) => {
   if (microLayout) {
-    return { menus: microLayout.menus };
+    return { menus: microLayout.menus, headerTitle: microLayout.headerTitle };
   }
   return {};
 })(BaseLayout);

@@ -1,4 +1,4 @@
-import { LayoutConfig } from '../typings';
+import { LayoutConfig, MenuConfig } from '../typings';
 
 export default (
   userConfig: LayoutConfig,
@@ -6,10 +6,12 @@ export default (
   absPathMap: {
     headerMenu?: string;
     injectMenuPlugin?: string[];
+    menus?: MenuConfig[];
+    headerTitle?: string;
   },
   otherProps?: Object,
 ) => {
-  const { injectMenuPlugin = [] } = absPathMap;
+  const { injectMenuPlugin = [], menus, headerTitle } = absPathMap;
 
   const importObjList = injectMenuPlugin.map((item, idx) => {
     if (item.startsWith('plugin')) {
@@ -87,6 +89,10 @@ export default props => {
   return React.createElement(require("${path}").default, {
     userConfig,
     userComp,
+    umircConfig: {
+      menus: ${JSON.stringify(menus)},
+      headerTitle: ${JSON.stringify(headerTitle)}
+    },
     ...props
   });
 };

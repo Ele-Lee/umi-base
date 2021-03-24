@@ -132,7 +132,7 @@ export default (api: IApi) => {
     };
 
     const { userConfig } = api;
-    const { injectMenuPlugin } = userConfig[CONFIG_KEY];
+    const { injectMenuPlugin, headerTitle, menus } = userConfig[CONFIG_KEY];
 
     api.writeTmpFile({
       path: join(DIR_NAME, 'Layout.tsx'),
@@ -142,6 +142,8 @@ export default (api: IApi) => {
         {
           headerMenu: existspathExistMap.headerMenuPath ? pathMap.headerMenuPath : void 0,
           injectMenuPlugin,
+          headerTitle,
+          menus,
         },
         {},
       ),

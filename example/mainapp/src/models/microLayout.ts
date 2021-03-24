@@ -7,30 +7,27 @@ import { MenuConfig, AppOption } from '@grfe/micro-layout/lib/typings/typing';
 import { getMenuFromConfigTB } from '@/services/menu';
 
 export type MainAppModelState = {
-  menus: MenuConfig[];
-  // apps: AppOption[];
+  menus: MenuConfig[] | null;
+  headerTitle: string;
 };
 export interface IMainAppModel {
   state: MainAppModelState;
   effects: {};
   reducers: {
     save: Reducer<MainAppModelState>;
-    // saveRoute: Reducer<MainAppModelState>;
-    // 启用 immer 之后
-    // save: ImmerReducer<IndexModelState>;
   };
   subscriptions: { init: Subscription };
 }
 
 const defaultState = {
-  menus: [],
-  // apps: [],
+  menus: null,
+  headerTitle: '果肉运营后台基座 in main',
 };
 
 const MainAppModel: IMainAppModel = {
   state: defaultState,
   reducers: {
-    save(state, action) {
+    save(state: MainAppModelState, action: { payload: any }) {
       return {
         ...state,
         ...action.payload,
@@ -58,56 +55,51 @@ const MainAppModel: IMainAppModel = {
   effects: {},
   subscriptions: {
     init({ dispatch, history }) {
-      getMenuFromConfigTB().then(menusRes => {
-        // console.log('%celelee test:', 'background:#000;color:#fff', menusRes);
+      getMenuFromConfigTB().then(res => {
         dispatch({
           type: 'save',
           payload: {
             menus: [
-              {
-                title: '子应用Aitem1',
-                path: 'subapp1/',
-                children: [
-                  {
-                    title: '子菜单1',
-                    icon: 'CarOutlined',
-                    path: '/sub-item',
-                  },
-                  {
-                    title: '子菜单2',
-                    icon: 'CarOutlined',
-                    path: '/sub-item2',
-                  },
-                  {
-                    title: '子菜单3',
-                    path: '/sub-item3',
-                  },
-                ],
-              },
-              {
-                title: 'dashboard',
-                path: 'portal/dashboard/user-search',
-              },
-              {
-                title: 'subapp2',
-                path: '/subapp2',
-                children: [
-                  {
-                    title: '子菜单2',
-                    icon: 'CarOutlined',
-                    path: '/sub-item2',
-                  },
-                  {
-                    title: '子菜单3',
-                    path: '/sub-item3',
-                  },
-                ],
-              },
+              // ...res,
+              // {
+              //   title: '子应用Aitem1',
+              //   path: '/subapp1',
+              //   children: [
+              //     {
+              //       title: '子菜单1',
+              //       icon: 'CarOutlined',
+              //       path: '/sub-item',
+              //     },
+              //     {
+              //       title: '子菜单2',
+              //       icon: 'CarOutlined',
+              //       path: '/sub-item2',
+              //     },
+              //     {
+              //       title: '子菜单3',
+              //       path: '/sub-item3',
+              //     },
+              //   ],
+              // },
+              // {
+              //   title: 'subapp2',
+              //   path: '/subapp2',
+              //   children: [
+              //     {
+              //       title: '子菜单2',
+              //       icon: 'CarOutlined',
+              //       path: '/sub-item2',
+              //     },
+              //     {
+              //       title: '子菜单3',
+              //       path: '/sub-item3',
+              //     },
+              //   ],
+              // },
               {
                 title: 'test2',
                 path: '/test2',
               },
-              // ...menusRes,
             ],
           },
         });
