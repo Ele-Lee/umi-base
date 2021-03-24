@@ -1,6 +1,6 @@
 {
   "name": "@grfe/plugin-layout-login",
-  "version": "0.0.2-beta0.0",
+  "version": "0.0.2",
   "main": "lib/index.js",
   "description": "micro",
   "authors": {
