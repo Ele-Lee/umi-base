@@ -1,4 +1,5 @@
-.mlayout-siteLayout {}
+.mlayout-siteLayout {
+}
 
 .reset-antd {
   .mlayout-publicHeader {
@@ -8,7 +9,7 @@
     right: 0;
     background: #fff !important;
     padding: 0;
-    box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
     z-index: 100;
 
     &-UserInfo {
@@ -18,10 +19,12 @@
 
     &-Logo {
       background: rgba(255, 255, 255, 0.2);
-
+      height: 60px;
+      display: flex;
+      align-items: center;
       img {
         margin-left: 16px;
-        height: 32px;
+        height: 20px;
       }
 
       span {
@@ -29,14 +32,14 @@
         padding-left: 16px;
         font-size: 14px;
         color: rgb(3, 12, 52);
+        height: 20px;
+        line-height: 20px;
 
         border-left: 1px solid rgba(0, 21, 41, 0.08);
       }
     }
-
   }
 }
-
 
 .f-center {
   display: flex;
@@ -48,8 +51,6 @@
   &-LogoWrap {
     .f-center;
   }
-
-
 
   .portalmain-menu-item {
     width: 100%;
