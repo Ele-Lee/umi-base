@@ -13,7 +13,7 @@ import { findActiveSubMenu, renderMenuListHandler } from './helper/utils';
 const { Content } = Layout;
 const headerHeight = 60;
 const defaultImgLogo =
-  'https://static.guorou.net/course-static/b0d31533cc2943beacb86c2ae878d895.png';
+  'https://static.guorou.net/course-static/22a23e8987c449708948925fab439ad3.svg';
 
 interface BaseLayoutProps extends IRouteComponentProps {
   menus: MenuConfig[];
