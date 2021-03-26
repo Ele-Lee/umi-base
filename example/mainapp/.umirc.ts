@@ -13,6 +13,7 @@ export default defineConfig({
   },
   mlayout: {
     // routesConfig,
+    hideSideMenu: true,
     menus: [
       {
         title: 'test2',

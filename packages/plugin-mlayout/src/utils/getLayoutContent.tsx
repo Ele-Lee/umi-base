@@ -5,6 +5,7 @@ export default (
   path: string,
   absPathMap: {
     headerMenu?: string;
+    headerTabs?: string;
     injectMenuPlugin?: string[];
     menus?: MenuConfig[];
     headerTitle?: string;
@@ -78,6 +79,9 @@ export default props => {
   const userComp = {
     headerMenu: ${
       absPathMap.headerMenu ? 'require("' + absPathMap.headerMenu + '").default' : 'undefined'
+    },
+    headerTabs: ${
+      absPathMap.headerTabs ? 'require("' + absPathMap.headerTabs + '").default' : 'undefined'
     },
     pluginItems: ${nameListStr}
   };

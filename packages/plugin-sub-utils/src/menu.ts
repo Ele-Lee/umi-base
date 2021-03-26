@@ -2,6 +2,8 @@ import React from 'react';
 import { Menu } from 'antd';
 import { TNodeParams, HeaderMenuItem } from './typing';
 
+export const renderCustomTabs = () => {};
+
 export const renderCustomMenu = (
   $nodeParams: TNodeParams,
   list?: Array<HeaderMenuItem>, // TODO

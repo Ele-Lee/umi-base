@@ -124,11 +124,13 @@ export default (api: IApi) => {
     const pathMap = {
       headerMenuPath: api.paths.absSrcPath + '/mlayout/headerMenu',
       headerSubMenuPath: api.paths.absSrcPath + '/mlayout/headerSubMenu',
+      headerTabsPath: api.paths.absSrcPath + '/mlayout/headerTabs',
     };
 
     const existspathExistMap = {
-      headerMenuPath: existsSync(pathMap.headerMenuPath),
+      hasHeaderMenuPath: existsSync(pathMap.headerMenuPath),
       hasHeaderSubMenu: existsSync(pathMap.headerSubMenuPath),
+      hasHeaderTabs: existsSync(pathMap.headerTabsPath),
     };
 
     const { userConfig } = api;
@@ -140,7 +142,8 @@ export default (api: IApi) => {
         layoutOpts,
         currentLayoutComponentPath,
         {
-          headerMenu: existspathExistMap.headerMenuPath ? pathMap.headerMenuPath : void 0,
+          headerMenu: existspathExistMap.hasHeaderMenuPath ? pathMap.headerMenuPath : void 0,
+          headerTabs: existspathExistMap.hasHeaderTabs ? pathMap.headerTabsPath : void 0,
           injectMenuPlugin,
           headerTitle,
           menus,

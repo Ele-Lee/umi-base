@@ -31,4 +31,6 @@ export interface IUserConfig {
   menuConfig: MenuConfig[];
   headerLogo?: string;
   globalHeaderHeight?: number;
+  hideHeader?: boolean;
+  hideSideMenu?: boolean;
 }

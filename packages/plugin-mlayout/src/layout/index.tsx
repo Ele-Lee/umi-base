@@ -18,13 +18,15 @@ const defaultImgLogo =
 interface BaseLayoutProps extends IRouteComponentProps {
   menus: MenuConfig[];
   headerTitle: string;
+  hideSideMenu?: boolean;
   userConfig: IUserConfig;
   userComp: {
     headerMenu?: Array<HeaderMenuItem>;
+    headerTabs?: React.ReactNode;
     pluginItems?: Array<ItemFC>;
+    hideHeader?: boolean;
+    hideSideMenu?: boolean;
   };
-  hideHeader?: boolean;
-  hideSideMenu?: boolean;
   umircConfig?: {
     headerTitle?: string;
     menus?: MenuConfig[];
@@ -40,21 +42,23 @@ function BaseLayout({
   umircConfig,
   menus: menusFromDva,
   headerTitle: headerTitleFromDva,
+  hideSideMenu: hideSideMenuFromDva,
   userConfig,
   userComp = {},
-  hideHeader,
-  hideSideMenu,
 }: BaseLayoutProps) {
   const {
     menuConfig,
     headerTitle: headerTitleFromConfig,
     headerLogo = defaultImgLogo,
     globalHeaderHeight = headerHeight,
+    hideHeader, // TODO this
   } = userConfig;
+  const hideSideMenu =
+    hideSideMenuFromDva !== undefined ? hideSideMenuFromDva : userConfig.hideSideMenu;
   const menus = menusFromDva || umircConfig?.menus;
   const headerTitle =
     headerTitleFromDva || umircConfig?.headerTitle || headerTitleFromConfig || '果肉运营后台基座';
-  const { headerMenu = [], pluginItems = [] } = userComp;
+  const { headerTabs, headerMenu = [], pluginItems = [] } = userComp;
 
   const curPathname = location.pathname;
   const [menuItemKey, setMenuItemKey] = useState(curPathname);
@@ -95,6 +99,7 @@ function BaseLayout({
           title={headerTitle}
           headerMenuList={headerMenu.concat(pluginItems)}
           globalHeaderHeight={globalHeaderHeight}
+          headerTabs={headerTabs}
         />
       )}
       <Layout className="site-layout">
@@ -148,7 +153,11 @@ const __connect = connect
 
 export default __connect(({ microLayout }: { microLayout: MainAppModelState }) => {
   if (microLayout) {
-    return { menus: microLayout.menus, headerTitle: microLayout.headerTitle };
+    return {
+      menus: microLayout.menus,
+      headerTitle: microLayout.headerTitle,
+      hideSideMenu: microLayout.hideSideMenu,
+    };
   }
   return {};
 })(BaseLayout);

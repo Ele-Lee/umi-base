@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Layout, Menu } from 'antd';
 import { HeaderMenuItem } from '@grfe/plugin-sub-utils/es/typing';
 import { renderCustomMenu, deliveryMenuNode } from '@grfe/plugin-sub-utils/es';
@@ -13,12 +13,27 @@ interface Props {
   logo: string;
   title: string;
   globalHeaderHeight: number;
+  headerTabs?: React.Component;
 }
 
-const PublicHeader = ({ headerMenuList = [], logo, title, globalHeaderHeight = 60 }: Props) => {
+const PublicHeader = ({
+  headerMenuList = [],
+  logo,
+  title,
+  globalHeaderHeight = 60,
+  headerTabs,
+}: Props) => {
   const headerStyle = {
     height: globalHeaderHeight,
   };
+
+  const renderTabs = useMemo(() => {
+    if (!headerTabs) return null;
+    if (typeof headerTabs == 'function') {
+      return React.createElement(headerTabs);
+    }
+    return null;
+  }, [headerTabs]);
 
   return (
     <div className="reset-antd" style={headerStyle}>
@@ -31,6 +46,7 @@ const PublicHeader = ({ headerMenuList = [], logo, title, globalHeaderHeight = 6
             </div>
           </section>
         )}
+        {renderTabs}
         <Menu
           mode="horizontal"
           style={{
