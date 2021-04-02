@@ -48,7 +48,7 @@ function BaseLayout({
     menus: menusFromDva,
     headerTitle: headerTitleFromDva,
     hideSideMenu: hideSideMenuFromDva,
-    hideContentByLogging,
+    hideContentByLoginning,
   } = dvaConfig || {};
   const {
     menuConfig,
@@ -92,7 +92,7 @@ function BaseLayout({
   }, [curPathname, menuRoutes]);
 
   const renderChildren = () => {
-    if (hideContentByLogging) {
+    if (hideContentByLoginning) {
       return null;
     }
     return children;
@@ -168,7 +168,7 @@ export default __connect(({ microLayout }: { microLayout: MainAppModelState }) =
       menus: microLayout.menus,
       headerTitle: microLayout.headerTitle,
       hideSideMenu: microLayout.hideSideMenu,
-      hideContentByLogging: microLayout.hideContentByLogging,
+      hideContentByLoginning: microLayout.hideContentByLoginning,
     };
     return { dvaConfig };
   }
@@ -178,6 +178,6 @@ export default __connect(({ microLayout }: { microLayout: MainAppModelState }) =
 type MainAppModelState = {
   menus: MenuConfig[] | null;
   headerTitle: string;
-  hideContentByLogging?: boolean;
+  hideContentByLoginning?: boolean;
   hideSideMenu?: boolean;
 };

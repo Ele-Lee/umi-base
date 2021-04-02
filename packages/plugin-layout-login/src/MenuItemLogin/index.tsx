@@ -22,8 +22,8 @@ const LoginItem: React.FC<LoginItemProps & TNodeParams> = ({
   const useAuthCb = (u: UserInfo) => {
     onGetUserInfoSuc && onGetUserInfoSuc(u);
     storageUserInfo(u);
-    if (microLayoutDvaConfig.hideContentByLogging) {
-      dispatch({ type: 'microLayout/save', payload: { hideContentByLogging: false } });
+    if (microLayoutDvaConfig.hideContentByLoginning) {
+      dispatch({ type: 'microLayout/save', payload: { hideContentByLoginning: false } });
       // console.log('%celelee test:useSelector', 'background:#000;color:#fff', microLayoutDvaConfig);
     }
   };

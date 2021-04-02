@@ -9,7 +9,7 @@ import { getMenuFromConfigTB } from '@/services/menu';
 export type MainAppModelState = {
   menus: MenuConfig[] | null;
   headerTitle: string;
-  hideContentByLogging?: boolean;
+  hideContentByLoginning?: boolean;
   globalLoading?: boolean;
 };
 export interface IMainAppModel {
@@ -24,7 +24,7 @@ export interface IMainAppModel {
 const defaultState = {
   menus: null,
   headerTitle: '果肉运营后台基座 in main',
-  hideContentByLogging: true,
+  hideContentByLoginning: true,
 };
 
 const MainAppModel: IMainAppModel = {
