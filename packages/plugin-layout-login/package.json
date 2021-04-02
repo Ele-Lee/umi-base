@@ -8,6 +8,9 @@
     "email": ""
   },
   "repository": "/@grfe/umi-plugin-layout-login",
+  "publishConfig": {
+    "registry": "http://r.npm.guorou.net"
+  },
   "scripts": {
     "start": "cross-env APP_ROOT=example umi dev",
     "build": "father-build",
