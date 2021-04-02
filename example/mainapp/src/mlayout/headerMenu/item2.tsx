@@ -5,7 +5,7 @@ const a = () => {
   const [customDom, setCustomDom] = useState(null);
 
   useEffect(() => {
-    const store = new MicroStore({ isMain: true, state: {} });
+    const store = new MicroStore({ isMain: true, state: { mainData: 'abc' } });
     store.on('subapp1_mounted', () => {
       const data = store.get('subapp1/');
       setCustomDom(data.comp);

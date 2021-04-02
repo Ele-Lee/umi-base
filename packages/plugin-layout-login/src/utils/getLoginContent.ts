@@ -6,13 +6,22 @@ export default (
   },
   // otherProps?: Object,
 ) => `
-const LoginItemFC$ = require("${path}").default
+import React from 'react';
 
-export const LoginItemFC = (props) => LoginItemFC$(Object.assign(props, { headerSubMenuForLogin: ${
-  absPathMap.headerSubMenuForLogin
-    ? 'require("' + absPathMap.headerSubMenuForLogin + '").default'
-    : 'undefined'
-} }));
+const LoginItemFC$ = require("${path}").default;
+
+export const LoginItemFC = (props) => {
+
+  const props$ = Object.assign(props, { headerSubMenuForLogin: ${
+    absPathMap.headerSubMenuForLogin
+      ? 'require("' + absPathMap.headerSubMenuForLogin + '").default'
+      : 'undefined'
+  } });
+  if(typeof LoginItemFC$ === 'function') {
+    return LoginItemFC$(props$);
+  }
+  return React.createElement(LoginItemFC$, props$);
+}
 
 export default LoginItemFC;
 `;

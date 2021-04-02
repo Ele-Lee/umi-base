@@ -30,7 +30,7 @@
     "src": true,
     "**/dist": true,
     "**/es": true,
-    "**/lib": true,
+    "**/lib": false,
     "packages/*/*.d.ts": true,
     "packages/*/*.js": {
       "when": "$(basename).d.ts"

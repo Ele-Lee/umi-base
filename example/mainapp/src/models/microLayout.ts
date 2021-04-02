@@ -9,6 +9,8 @@ import { getMenuFromConfigTB } from '@/services/menu';
 export type MainAppModelState = {
   menus: MenuConfig[] | null;
   headerTitle: string;
+  hideContentByLogging?: boolean;
+  globalLoading?: boolean;
 };
 export interface IMainAppModel {
   state: MainAppModelState;
@@ -22,6 +24,7 @@ export interface IMainAppModel {
 const defaultState = {
   menus: null,
   headerTitle: '果肉运营后台基座 in main',
+  hideContentByLogging: true,
 };
 
 const MainAppModel: IMainAppModel = {
@@ -61,26 +64,26 @@ const MainAppModel: IMainAppModel = {
           payload: {
             menus: [
               // ...res,
-              // {
-              //   title: '子应用Aitem1',
-              //   path: '/subapp1',
-              //   children: [
-              //     {
-              //       title: '子菜单1',
-              //       icon: 'CarOutlined',
-              //       path: '/sub-item',
-              //     },
-              //     {
-              //       title: '子菜单2',
-              //       icon: 'CarOutlined',
-              //       path: '/sub-item2',
-              //     },
-              //     {
-              //       title: '子菜单3',
-              //       path: '/sub-item3',
-              //     },
-              //   ],
-              // },
+              {
+                title: '子应用Aitem1',
+                path: '/subapp1',
+                children: [
+                  {
+                    title: '子菜单1',
+                    icon: 'CarOutlined',
+                    path: '/sub-item',
+                  },
+                  {
+                    title: '子菜单2',
+                    icon: 'CarOutlined',
+                    path: '/sub-item2',
+                  },
+                  {
+                    title: '子菜单3',
+                    path: '/sub-item3',
+                  },
+                ],
+              },
               // {
               //   title: 'subapp2',
               //   path: '/subapp2',

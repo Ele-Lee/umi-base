@@ -113,6 +113,7 @@ class Observer {
       value: 1,
       //是否为枚举属性
       enumerable: false,
+      writable: true,
     });
     const temp = new Proxy(value, {
       get(target, propKey, receiver) {

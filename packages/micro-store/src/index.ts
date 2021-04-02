@@ -11,7 +11,7 @@ class MicroStore {
   private busInstance: Bus | null = null;
 
   constructor(option: InitializeOption) {
-    const { isMain, state, name = '', isMerge } = option;
+    const { isMain, state, name = '', isCover } = option;
     if (this.isParentWindow() && isMain) {
       assert(
         isMain && !name,
@@ -24,7 +24,7 @@ class MicroStore {
       assert(name, '子应用命名空间不能为空');
       this.namespace = name;
     }
-    this.initStorageObj(this.namespace, state || {}, !!isMerge);
+    this.initStorageObj(this.namespace, state || {}, !!isCover);
     this.initEventBus();
   }
 
@@ -146,7 +146,7 @@ class MicroStore {
     this.busInstance = win[eventBusKeyOnWindow];
   }
 
-  private initStorageObj(name: string, initialData: object, isMerge: boolean) {
+  private initStorageObj(name: string, initialData: object, isCover: boolean) {
     assert(name, '模块名有误');
     assert(isObject(initialData), '初始化模块必须用对象');
     const win = this.getParentWindow();
@@ -158,14 +158,26 @@ class MicroStore {
         enumerable: false,
       });
     } else {
-      // const fnType = isMerge ? 'merge' : 'set';
+      // const fnType = isCover ? 'merge' : 'set';
       // console.log(
       //   '%celelee test:',
       //   'background:#000;color:#fff',
       //   win[storageCacheInsOnWindow],
       //   fnType,
       // );
-      win[storageCacheInsOnWindow]['set'](name, initialData);
+      let tmpTarget = win[storageCacheInsOnWindow]['get'](name);
+      // if (tmpTarget && tmpTarget.__isProxy) {
+      //   tmpTarget.__isProxy = (tmpTarget.__isProxy || 0) + 1;
+      // }
+      if (tmpTarget && !isCover) {
+        Object.keys(initialData).forEach(k => {
+          // @ts-ignore
+          tmpTarget[k] = initialData[k];
+        });
+        // win[storageCacheInsOnWindow]['set'](name, tmpTarget);
+      } else {
+        win[storageCacheInsOnWindow]['set'](name, initialData);
+      }
     }
 
     this.cacheInstance = win[storageCacheInsOnWindow];

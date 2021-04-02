@@ -27,7 +27,7 @@ class Index1 extends React.Component {
 
   static getDerivedStateFromError(error) {
     //...
-    console.log('%celelee test:', 'background:#000;color:#ff1', error);
+    // console.log('%celelee test:', 'background:#000;color:#ff1', error);
     return {
       aa: 'err',
     };
@@ -35,7 +35,7 @@ class Index1 extends React.Component {
 
   componentDidCatch(error, errorInfo) {
     // 你同样可以将错误日志上报给服务器
-    console.log('%celelee test:', 'background:#000;color:#e12ff1', error, errorInfo);
+    // console.log('%celelee test:', 'background:#000;color:#e12ff1', error, errorInfo);
   }
   render() {
     if (this.state.aa === 'err') return 'none';

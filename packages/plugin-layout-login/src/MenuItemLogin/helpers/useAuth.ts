@@ -55,21 +55,20 @@ export function useAuth(onCb: (u: UserInfo) => void) {
   const [user, setUser] = useState<null | UserInfo>(null);
   useEffect(() => {
     sto.set();
-    setTimeout(() => {
-      fetchPortalAuth().then(res => {
-        let remainingTime = sto.get();
-        if (remainingTime <= 0) return;
-        if (!res) {
-          redirectLogin();
-          return;
-        }
-        setUser(res);
 
-        if (typeof onCb === 'function') {
-          onCb(res);
-        }
-      });
-    }, 1000);
+    fetchPortalAuth().then(res => {
+      let remainingTime = sto.get();
+      if (remainingTime <= 0) return;
+      if (!res) {
+        redirectLogin();
+        return;
+      }
+      setUser(res);
+
+      if (typeof onCb === 'function') {
+        onCb(res);
+      }
+    });
   }, []);
 
   return {

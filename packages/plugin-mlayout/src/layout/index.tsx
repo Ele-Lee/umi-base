@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // @ts-ignore
-import { IRouteComponentProps, MainAppModelState, Link, connect } from 'umi';
+import { IRouteComponentProps, Link, connect, getUserInfo } from 'umi';
 import { Layout } from 'antd';
 import _omit from 'lodash/omit';
 import { HeaderMenuItem, ItemFC } from '@grfe/plugin-sub-utils/es/typing';
@@ -16,13 +16,11 @@ const defaultImgLogo =
   'https://static.guorou.net/course-static/22a23e8987c449708948925fab439ad3.svg';
 
 interface BaseLayoutProps extends IRouteComponentProps {
-  menus: MenuConfig[];
-  headerTitle: string;
-  hideSideMenu?: boolean;
+  dvaConfig: MainAppModelState;
   userConfig: IUserConfig;
   userComp: {
     headerMenu?: Array<HeaderMenuItem>;
-    headerTabs?: React.ReactNode;
+    headerTabs?: React.Component;
     pluginItems?: Array<ItemFC>;
     hideHeader?: boolean;
     hideSideMenu?: boolean;
@@ -31,6 +29,7 @@ interface BaseLayoutProps extends IRouteComponentProps {
     headerTitle?: string;
     menus?: MenuConfig[];
   };
+  dispatch: Function;
 }
 
 function BaseLayout({
@@ -40,12 +39,17 @@ function BaseLayout({
   // history,
   // match,
   umircConfig,
-  menus: menusFromDva,
-  headerTitle: headerTitleFromDva,
-  hideSideMenu: hideSideMenuFromDva,
+  dvaConfig,
   userConfig,
   userComp = {},
+  dispatch,
 }: BaseLayoutProps) {
+  const {
+    menus: menusFromDva,
+    headerTitle: headerTitleFromDva,
+    hideSideMenu: hideSideMenuFromDva,
+    hideContentByLogging,
+  } = dvaConfig || {};
   const {
     menuConfig,
     headerTitle: headerTitleFromConfig,
@@ -87,8 +91,15 @@ function BaseLayout({
     setActiveSubMenu(findActiveSubMenu(curPathname, menuRoutes));
   }, [curPathname, menuRoutes]);
 
-  if (isInMain) {
+  const renderChildren = () => {
+    if (hideContentByLogging) {
+      return null;
+    }
     return children;
+  };
+
+  if (isInMain) {
+    return renderChildren();
   }
 
   return (
@@ -123,7 +134,7 @@ function BaseLayout({
             margin: 16,
           }}
         >
-          {children}
+          {renderChildren()}
         </Content>
       </Layout>
     </Layout>
@@ -153,11 +164,20 @@ const __connect = connect
 
 export default __connect(({ microLayout }: { microLayout: MainAppModelState }) => {
   if (microLayout) {
-    return {
+    const dvaConfig = {
       menus: microLayout.menus,
       headerTitle: microLayout.headerTitle,
       hideSideMenu: microLayout.hideSideMenu,
+      hideContentByLogging: microLayout.hideContentByLogging,
     };
+    return { dvaConfig };
   }
   return {};
 })(BaseLayout);
+
+type MainAppModelState = {
+  menus: MenuConfig[] | null;
+  headerTitle: string;
+  hideContentByLogging?: boolean;
+  hideSideMenu?: boolean;
+};

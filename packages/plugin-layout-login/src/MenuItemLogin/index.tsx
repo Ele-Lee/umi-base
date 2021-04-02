@@ -1,9 +1,11 @@
 import React from 'react';
+// @ts-ignore
+import { useSelector, useDispatch } from 'umi';
 import { renderCustomMenu, deliveryMenuNode } from '@grfe/plugin-sub-utils/es';
 import { TNodeParams } from '@grfe/plugin-sub-utils/es/typing';
 import { useAuth } from './helpers/useAuth';
 import { Avatar } from 'antd';
-import { LoginItemProps } from 'src/typings';
+import { LoginItemProps, UserInfo } from 'src/typings';
 import { storageUserInfo } from './helpers/microAction';
 
 const LoginItem: React.FC<LoginItemProps & TNodeParams> = ({
@@ -12,11 +14,21 @@ const LoginItem: React.FC<LoginItemProps & TNodeParams> = ({
   MenuSubMenu,
   key,
   headerSubMenuForLogin = [],
-  onGetUserInfoSuc = data => {
-    storageUserInfo(data);
-  },
+  onGetUserInfoSuc,
 }) => {
-  const { user, clearUser } = useAuth(onGetUserInfoSuc);
+  const microLayoutDvaConfig = useSelector(({ microLayout }: any) => microLayout);
+  const dispatch = useDispatch();
+
+  const useAuthCb = (u: UserInfo) => {
+    onGetUserInfoSuc && onGetUserInfoSuc(u);
+    storageUserInfo(u);
+    if (microLayoutDvaConfig.hideContentByLogging) {
+      dispatch({ type: 'microLayout/save', payload: { hideContentByLogging: false } });
+      // console.log('%celelee test:useSelector', 'background:#000;color:#fff', microLayoutDvaConfig);
+    }
+  };
+
+  const { user, clearUser } = useAuth(useAuthCb);
   const handleLogout = () => {
     clearUser();
   };
