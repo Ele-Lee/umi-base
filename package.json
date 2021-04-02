@@ -1,7 +1,7 @@
 {
   "name": "portal_micro_base",
   "version": "0.0.1-beta1",
-  "private": false,
+  "private": true,
   "workspaces": {
     "packages": [
       "apps/*",
