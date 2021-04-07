@@ -1,4 +1,4 @@
-import { WindowIndex, InitializeOption, SelectorParams } from './types';
+import { WindowIndex, InitializeOption, SelectorParams, ModuleWatchFn } from './types';
 import MicroCache from './cache';
 import { assert, myGet, mySet, isObject, checkPathArr } from './util';
 import { eventBusKeyOnWindow, storageCacheInsOnWindow, completeValuePathReg } from './constant';
@@ -7,6 +7,7 @@ import Bus from './bus';
 
 class MicroStore {
   private namespace: string = '';
+  private namespaceWatchFn: { [key: string]: ModuleWatchFn } = {};
   private cacheInstance: MicroCache | null = null;
   private busInstance: Bus | null = null;
 
@@ -116,6 +117,10 @@ class MicroStore {
     this.getCacheInstance().watch(this.get(_namespace), _key, cb);
   }
 
+  moduleWatch(namespace: string, cb: ModuleWatchFn) {
+    this.namespaceWatchFn[namespace] = cb;
+  }
+
   on(name: string, fn: (...args: any[]) => void) {
     this.getBusInstance().on(name, fn);
   }
@@ -151,7 +156,12 @@ class MicroStore {
     assert(isObject(initialData), '初始化模块必须用对象');
     const win = this.getParentWindow();
     if (!Reflect.has(win, storageCacheInsOnWindow)) {
-      const cacheIns = new MicroCache({ [name]: initialData });
+      const cacheIns = new MicroCache({ [name]: initialData }, (...args) => {
+        const tmp = this.namespaceWatchFn[args[1]];
+        if (tmp) {
+          tmp(...args);
+        }
+      });
       Object.defineProperty(win, storageCacheInsOnWindow, {
         value: cacheIns,
         //不可枚举

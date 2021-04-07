@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from '@/lib/hooks/useRematch';
 import MicroStore from '@grfe/micro-store';
 
@@ -26,6 +26,18 @@ interface UserRole {
 export function getUserInfo(): UserInfo {
   const temp = new MicroStore({ name: "{{{ keyForStorageAuth }}}" });
   return temp.get();
+}
+
+export function useUserInfo(): UserInfo | null {
+  const [infoData, setInfoData] = useState<UserInfo | null>(null);
+  useEffect(() => {
+    const temp = new MicroStore({ name: "{{{ keyForStorageAuth }}}" });
+    temp.moduleWatch("{{{ keyForStorageAuth }}}", (...args) => {
+      setInfoData(args[2]);
+    });
+  }, []);
+
+  return infoData;
 }
 
 interface Props {

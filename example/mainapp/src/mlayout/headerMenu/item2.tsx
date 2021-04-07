@@ -3,6 +3,7 @@ import MicroStore from '@grfe/micro-store';
 
 const a = () => {
   const [customDom, setCustomDom] = useState(null);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const store = new MicroStore({ isMain: true, state: { mainData: 'abc' } });
@@ -14,6 +15,17 @@ const a = () => {
     // }, 1000);
   }, []);
 
-  return <div>main app headerMenu 2: {customDom}</div>;
+  return (
+    <div>
+      main app headerMenu 2:
+      <button
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        btn
+      </button>
+    </div>
+  );
 };
 export default a;

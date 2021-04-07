@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from './index.less';
 import { MicroApp, useStore } from 'umi';
-import sideMenu from '@/mlayout/sideMenu';
 import { initGlobalState, MicroAppStateActions } from 'qiankun';
 import { getUserInfo } from 'umi';
 import styled from 'styled-components';
@@ -18,11 +17,11 @@ const MyH1 = styled.h1`
 
 export default () => {
   useEffect(() => {
-    setTimeout(() => {
-      const uinfo = getUserInfo();
-      console.log('%celelee test:', 'background:#320;color:#4ff', uinfo);
-      // console.log('%celelee test:', 'background:#000;color:#fff', typeof uinfo);
-    }, 1000);
+    // setTimeout(() => {
+    //   // const uinfo = getUserInfo();
+    //   // console.log('%celelee test:', 'background:#320;color:#4ff', uinfo);
+    //   // console.log('%celelee test:', 'background:#000;color:#fff', typeof uinfo);
+    // }, 1000);
   }, []);
 
   return (

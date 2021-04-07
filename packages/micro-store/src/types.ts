@@ -47,3 +47,10 @@ export type SelectorFn = (p: StandardObj) => StandardObj;
 export type SelectorParams = string | SelectorFn;
 
 export type ValueListener = (newVal: any, oldVal: any) => void;
+
+export type ModuleWatchFn = (
+  target: ModuleObj,
+  p: string | number,
+  value: any,
+  receiver: any,
+) => void;

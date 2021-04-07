@@ -1,4 +1,4 @@
-import { CacheInterface, keyInterface, ModuleObj, OnChangeFn } from './types';
+import { CacheInterface, keyInterface, ModuleObj, OnChangeFn, ModuleWatchFn } from './types';
 import hash from './hash';
 // import { isObject, assert } from './util';
 
@@ -142,19 +142,35 @@ function observe(value: any): ModuleObj {
 
 export default class MicroCache implements CacheInterface {
   private __cache!: ModuleObj;
+  private topWatchFn?: ModuleWatchFn;
   // private __listeners: cacheListener[];
 
-  constructor(initialData: ModuleObj = {}) {
+  // this.__cache = null;
+  constructor(initialData: ModuleObj = {}, topWatchFn?: ModuleWatchFn) {
     // this.__listeners = [];
+    this.topWatchFn = topWatchFn;
     this.setCache(observe(initialData));
   }
 
   getCache() {
     return this.__cache;
   }
+
   setCache(innerCache: ModuleObj) {
-    this.__cache = innerCache;
+    this.__cache = this.wrapCache(innerCache);
     return this;
+  }
+
+  wrapCache(cacheObj: ModuleObj) {
+    const that = this;
+    return new Proxy(cacheObj, {
+      set(target, propKey, value, receiver) {
+        if (that.topWatchFn) {
+          that.topWatchFn(target, propKey as string | number, value, receiver);
+        }
+        return Reflect.set(target, propKey, value, receiver);
+      },
+    });
   }
 
   watch(moduleSpace: ModuleObj, key: string, cb: (ov: any, nv: any) => void) {
