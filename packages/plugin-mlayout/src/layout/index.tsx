@@ -59,7 +59,7 @@ function BaseLayout({
   } = userConfig;
   const hideSideMenu =
     hideSideMenuFromDva !== undefined ? hideSideMenuFromDva : userConfig.hideSideMenu;
-  const menus = menusFromDva || umircConfig?.menus;
+  const menus = menusFromDva || menuConfig || umircConfig?.menus;
   const headerTitle =
     headerTitleFromDva || umircConfig?.headerTitle || headerTitleFromConfig || '果肉运营后台基座';
   const { headerTabs, headerMenu = [], pluginItems = [] } = userComp;
@@ -72,12 +72,14 @@ function BaseLayout({
     throw Error('路由没有name 或者 path');
   }
 
-  const isInMain = window !== undefined && !!window.__POWERED_BY_QIANKUN__;
-  const isMainApp = window.__isMainApp__;
+  // 以下两个常量 qiankun 自带，字面意思，两个变量共同判断是否需要渲染 mlayout的壳
+  const isInMain = window !== undefined && !!window.__POWERED_BY_QIANKUN__; // 当前项目是否在父应用，即当前是子应用
+  const isMainApp = window.__isMainApp__; // 当前项目是爸爸
 
   const [menuRoutes, setMenuRoutes] = useState<MenuConfig[]>([]);
 
   useEffect(() => {
+    // 貌似有问题的逻辑，貌似可以去掉，最初的设计方案问题，当前转向“组装式侧边栏”
     if (!isMainApp && Array.isArray(menuConfig)) {
       setMenuRoutes(menuConfig);
       return;
@@ -118,6 +120,7 @@ function BaseLayout({
           <LayoutMenu
             selectedKey={menuItemKey}
             activeSubMenu={activeSubMenu}
+            // 必须是一个函数传入，antd menu组件原本设计
             renderMenuList={menuObjParams => {
               return renderMenuListHandler(menuRoutes, menuObjParams);
             }}

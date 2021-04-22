@@ -23,6 +23,7 @@ export function findActiveSubMenu($pathname: string, $routesConfig: any[]): stri
   return activeSubMenu;
 }
 
+// 禁止改这里的结构，逻辑可改，menu 第一个子节点必须 是menuItem or MenuSubMenu
 export const renderMenuListHandler = (
   menuRoutes: MenuConfig[],
   { MenuItem, MenuSubMenu }: TNodeParams,

@@ -142,7 +142,7 @@ function observe(value: any): ModuleObj {
 
 export default class MicroCache implements CacheInterface {
   private __cache!: ModuleObj;
-  private topWatchFn?: ModuleWatchFn;
+  private topWatchFn?: ModuleWatchFn; // 顶级监听，横竖都会监听到
   // private __listeners: cacheListener[];
 
   // this.__cache = null;

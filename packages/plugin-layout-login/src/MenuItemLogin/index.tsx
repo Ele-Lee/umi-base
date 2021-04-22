@@ -16,15 +16,19 @@ const LoginItem: React.FC<LoginItemProps & TNodeParams> = ({
   headerSubMenuForLogin = [],
   onGetUserInfoSuc,
 }) => {
-  const microLayoutDvaConfig = useSelector(({ microLayout }: any) => microLayout);
-  const dispatch = useDispatch();
+  // umi 机制，如果没有启动dva ，不会有useSelector，直接取 dva 也不行 redux报错。
+  const microLayoutDvaConfig = useSelector
+    ? useSelector(({ microLayout }: any) => microLayout)
+    : null;
+  const dispatch = useDispatch ? useDispatch() : null;
 
   const useAuthCb = (u: UserInfo) => {
     onGetUserInfoSuc && onGetUserInfoSuc(u);
     storageUserInfo(u);
-    if (microLayoutDvaConfig.hideContentByLoginning) {
+    if (dispatch && microLayoutDvaConfig && microLayoutDvaConfig.hideContentByLoginning) {
       dispatch({ type: 'microLayout/save', payload: { hideContentByLoginning: false } });
-      // console.log('%celelee test:useSelector', 'background:#000;color:#fff', microLayoutDvaConfig);
+    } else {
+      console.error('当前没有启动dva');
     }
   };
 
