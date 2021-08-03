@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { redirectLogin } from '@grfe/utils/dist/tool';
 import { UserInfo } from './typing';
 // import { setUserInfo } from '../../../utils/microInit';
 
-const apiUrl = '/portalapi/api/1/auth/portal_profile_info?app=portal';
+const loginApiUrl = '/portalapi/auth';
 
 const clearCookie = () => {
   const cookieDomain: string[] = [];
@@ -27,9 +26,16 @@ const clearCookie = () => {
   });
 };
 
+const redirectLogin = (_loginUrl?: string): void => {
+  const loginUrl =
+    _loginUrl || `/login?force_logout=1&from=${encodeURIComponent(window.location.href)}`;
+
+  window.location.href = loginUrl;
+};
+
 async function fetchPortalAuth(): Promise<UserInfo | null> {
   try {
-    const response = await fetch(apiUrl);
+    const response = await fetch(loginApiUrl);
     const {
       data: { user },
       code,

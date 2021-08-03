@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Reducer, Subscription, Action } from 'umi';
 // import MicroStore from '@grfe/micro-store';
 // import { omitByKey } from '@/utils/recursive';

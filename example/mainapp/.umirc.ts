@@ -71,7 +71,7 @@ export default defineConfig({
   // favicon: 'https://i.52112.com/icon/jpg/256/20190116/28061/1395736.jpg',
   proxy: {
     '/portalapi': {
-      target: 'http://portalhome.uae.shensz.local',
+      target: 'http://localhost:3333',
       changeOrigin: true,
     },
     '/portal': {
@@ -79,15 +79,15 @@ export default defineConfig({
       changeOrigin: true,
     },
     '/phome': {
-      target: 'http://portalhome.uae.shensz.local',
+      target: 'http://localhost:3333',
       changeOrigin: true,
     },
     '/login': {
-      target: 'http://portalhome.uae.shensz.local',
+      target: 'http://localhost:3333',
       changeOrigin: true,
     },
     '/pauthapi': {
-      target: 'http://portalhome.uae.shensz.local',
+      target: 'http://localhost:3333',
       changeOrigin: true,
     },
   },
