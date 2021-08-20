@@ -1,5 +1,5 @@
 import * as allIcons from '@ant-design/icons';
-import { Antd4Icon } from '@/typings';
+import { Antd4Icon } from 'src/typings/typings';
 
 /**
  *
@@ -22,7 +22,7 @@ export default function formatter(iconName: string): Antd4Icon {
  */
 function toHump(name: string) {
   const _name = name.replace(name[0], name[0].toUpperCase());
-  return _name.replace(/\-(\w)/g, function (all, letter) {
+  return _name.replace(/\-(\w)/g, function(all, letter) {
     return letter.toUpperCase();
   });
 }

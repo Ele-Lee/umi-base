@@ -11,20 +11,16 @@
     "nohoist": []
   },
   "repository": "http://git.shensz.local/Ele_Lee/portal_micro_base/",
-  "publishConfig": {
-    "registry": "http://r.npm.guorou.net"
-  },
   "scripts": {
     "dev:main": "lerna exec --scope=mainapp -- yarn start",
     "dev:sub1": "lerna exec --scope=subapp1 -- yarn start",
     "dev:sub2": "lerna exec --scope=subapp2 -- yarn start",
+    "dev:next": "lerna exec --scope=next-app -- yarn dev",
     "build": "node scripts/build.js NO=1",
-    "build:pkg": "lerna run build",
+    "build:pkg": "lerna run build --scope '@grfe/micro-store' --scope '@grfe/plugin-sub-utils' --scope '@grfe/plugin-micro-layout' --scope '@grfe/plugin-layout-login'",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
-    "alias:ts": "node ./scripts/ts-paths",
-    "release": "glerna publish",
-    "release-force": "glerna publish --force-publish"
+    "alias:ts": "node ./scripts/ts-paths"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -39,11 +35,10 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^5.0.12",
-    "@grfe/lerna": "^0.2.12",
-    "@grfe/utils": "^0.3.25",
-    "@umijs/plugin-qiankun": "^2.18.2",
+    "@umijs/plugin-qiankun": "2.29.1",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.28",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "react": "^16.12.0",

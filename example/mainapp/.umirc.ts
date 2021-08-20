@@ -4,8 +4,8 @@ import { defineConfig } from 'umi';
 import pkg from './package.json';
 
 export default defineConfig({
-  base: '/' + pkg.name,
-  publicPath: '/' + pkg.name + '/',
+  // base: '/' + pkg.name,
+  // publicPath: '/' + pkg.name + '/',
   layout: false,
 
   dva: {
@@ -71,23 +71,28 @@ export default defineConfig({
   // favicon: 'https://i.52112.com/icon/jpg/256/20190116/28061/1395736.jpg',
   proxy: {
     '/portalapi': {
-      target: 'http://localhost:3333',
+      target: 'http://localhost:5555',
       changeOrigin: true,
     },
-    '/portal': {
-      target: 'http://localhost:3000',
-      changeOrigin: true,
-    },
+    // '/portal': {
+    //   target: 'http://localhost:3000',
+    //   changeOrigin: true,
+    // },
     '/phome': {
-      target: 'http://localhost:3333',
+      target: 'http://localhost:5555',
       changeOrigin: true,
     },
     '/login': {
-      target: 'http://localhost:3333',
+      target: 'http://localhost:5555',
       changeOrigin: true,
+      pathRewrite: { '^/api': '' },
     },
     '/pauthapi': {
-      target: 'http://localhost:3333',
+      target: 'http://localhost:5555',
+      changeOrigin: true,
+    },
+    '/image': {
+      target: 'http://localhost:7777',
       changeOrigin: true,
     },
   },

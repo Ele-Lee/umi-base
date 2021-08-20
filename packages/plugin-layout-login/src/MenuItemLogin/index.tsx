@@ -38,9 +38,10 @@ const LoginItem: React.FC<LoginItemProps & TNodeParams> = ({
   };
 
   if (!user) return null;
+
   return (
     <MenuSubMenu
-      key={key}
+      key={'plugin-layout-login'}
       title={
         <div className="mlayout-publicHeader-UserInfo">
           {user?.avatar_url ? (
@@ -55,7 +56,7 @@ const LoginItem: React.FC<LoginItemProps & TNodeParams> = ({
               {user?.username.slice(0, 1)}
             </Avatar>
           )}
-          <span style={{ marginLeft: 10 }}>{user?.username}</span>
+          {user?.username && <span style={{ marginLeft: 10 }}>{user?.username}</span>}
         </div>
       }
     >

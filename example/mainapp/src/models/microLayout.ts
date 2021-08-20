@@ -59,55 +59,60 @@ const MainAppModel: IMainAppModel = {
   effects: {},
   subscriptions: {
     init({ dispatch, history }) {
-      getMenuFromConfigTB().then(res => {
-        dispatch({
-          type: 'save',
-          payload: {
-            menus: [
-              // ...res,
-              {
-                title: '子应用Aitem1',
-                path: '/subapp1',
-                children: [
-                  {
-                    title: '子菜单1',
-                    icon: 'CarOutlined',
-                    path: '/sub-item',
-                  },
-                  {
-                    title: '子菜单2',
-                    icon: 'CarOutlined',
-                    path: '/sub-item2',
-                  },
-                  {
-                    title: '子菜单3',
-                    path: '/sub-item3',
-                  },
-                ],
-              },
-              // {
-              //   title: 'subapp2',
-              //   path: '/subapp2',
-              //   children: [
-              //     {
-              //       title: '子菜单2',
-              //       icon: 'CarOutlined',
-              //       path: '/sub-item2',
-              //     },
-              //     {
-              //       title: '子菜单3',
-              //       path: '/sub-item3',
-              //     },
-              //   ],
-              // },
-              {
-                title: 'test2',
-                path: '/test2',
-              },
-            ],
-          },
+      getMenuFromConfigTB()
+        .then(res => {
+          dispatch({
+            type: 'save',
+            payload: {
+              menus: [
+                // ...res,
+                {
+                  title: '子应用Aitem1',
+                  path: '/subapp1',
+                  children: [
+                    {
+                      title: '子菜单1',
+                      icon: 'CarOutlined',
+                      path: '/sub-item',
+                    },
+                    {
+                      title: '子菜单2',
+                      icon: 'CarOutlined',
+                      path: '/sub-item2',
+                    },
+                    {
+                      title: '子菜单3',
+                      path: '/sub-item3',
+                    },
+                  ],
+                },
+                // {
+                //   title: 'subapp2',
+                //   path: '/subapp2',
+                //   children: [
+                //     {
+                //       title: '子菜单2',
+                //       icon: 'CarOutlined',
+                //       path: '/sub-item2',
+                //     },
+                //     {
+                //       title: '子菜单3',
+                //       path: '/sub-item3',
+                //     },
+                //   ],
+                // },
+                {
+                  title: 'nextApp',
+                  path: '/test2',
+                  icon: 'PictureOutlined',
+                },
+              ],
+            },
+          });
+        })
+        .catch(() => {
+          console.log('%celelee test:', 'background:#000;color:#fff', 'catch2');
         });
-      });
     },
   },
 };

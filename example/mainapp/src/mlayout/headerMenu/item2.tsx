@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MicroStore from '@grfe/micro-store';
+import { Button } from 'antd';
 
 const a = () => {
   const [customDom, setCustomDom] = useState(null);
@@ -17,14 +18,15 @@ const a = () => {
 
   return (
     <div>
-      main app headerMenu 2:
-      <button
+      <Button
+        type="primary"
         onClick={() => {
           setCount(count + 1);
+          alert('hi');
         }}
       >
-        btn
-      </button>
+        main顶部菜单
+      </Button>
     </div>
   );
 };

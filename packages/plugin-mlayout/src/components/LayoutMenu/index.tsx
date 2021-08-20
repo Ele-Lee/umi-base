@@ -32,7 +32,6 @@ export default function LayoutMenu({
     window.localStorage.setItem(localKey, collapsed ? '1' : '0');
   }, [collapsed]);
   const onCollapse = () => setCollapsed(!+collapsed);
-
   return (
     <Sider {...{ width, collapsed, onCollapse }} collapsible>
       <Menu

@@ -4,6 +4,7 @@ import zhCN from 'antd/es/locale/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { getMenuFromConfigTB } from './services/menu';
+import './global.less';
 
 moment.locale('zh-cn');
 
@@ -30,29 +31,29 @@ export const qiankun = getMenuFromConfigTB()
             test: 1,
           },
         },
-        {
-          name: 'subapp2', // 唯一 id
-          entry: '//localhost:8200', // html entry
-        },
-        {
-          name: 'course_portal', // 唯一 id
-          entry: '//localhost:3000', // html entry
-          props: {
-            isInMain: 1,
-          },
-          activeRule: '/portal',
-          // mountElementId: 'portal-root',
-          // base: '/portal',
-        },
+        // {
+        //   name: 'subapp2', // 唯一 id
+        //   entry: '//localhost:8200', // html entry
+        // },
+        // {
+        //   name: 'course_portal', // 唯一 id
+        //   entry: '//localhost:3000', // html entry
+        //   props: {
+        //     isInMain: 1,
+        //   },
+        //   activeRule: '/portal',
+        //   // mountElementId: 'portal-root',
+        //   // base: '/portal',
+        // },
       ],
       routes: [
-        {
-          path: '/portal',
-          microApp: 'course_portal',
-          microAppProps: {
-            autoSetLoading: true,
-          },
-        },
+        // {
+        //   path: '/portal',
+        //   microApp: 'course_portal',
+        //   microAppProps: {
+        //     autoSetLoading: true,
+        //   },
+        // },
         {
           path: '/subapp1',
           microApp: 'subapp1',
@@ -80,5 +81,6 @@ export const qiankun = getMenuFromConfigTB()
     };
   })
   .catch(() => {
+    console.log('%celelee test:', 'background:#000;color:#fff', 'catch');
     return {};
   });

@@ -7,7 +7,7 @@ const Child = () => {
     // throw 'Error 123';
   }, []);
 
-  return <div className={style.red}>555</div>;
+  return <div className={style.red}>55512</div>;
 };
 
 class Index1 extends React.Component {
@@ -20,9 +20,6 @@ class Index1 extends React.Component {
 
   componentDidMount() {
     this.setState({ aa: 22 });
-    // setTimeout(() => {
-    //   throw 'error';
-    // }, 2000);
   }
 
   static getDerivedStateFromError(error) {
@@ -41,8 +38,7 @@ class Index1 extends React.Component {
     if (this.state.aa === 'err') return 'none';
     return (
       <div>
-        <Button>ff</Button>
-        {this.state.aa}
+        <Button>子应用sub1页面</Button>
         <Child />
       </div>
     );

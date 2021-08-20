@@ -11,9 +11,18 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({}) => {
     //   // setInfoData(args[2]);
     //   console.log('%celelee test:', 'background:#000;color:#fff', args);
     // });
+    console.log('%celelee test:', 'background:#000;color:#fff', infoData);
   }, []);
-  console.log('%celelee test:', 'background:#000;color:#fff', infoData);
 
-  return <div>自定义 tabs</div>;
+  return (
+    <div
+      style={{ flex: 1, marginLeft: 26, display: 'flex', alignItems: 'center', fontSize: 20 }}
+      onClick={() => {
+        alert(1);
+      }}
+    >
+      nav1
+    </div>
+  );
 };
 export default HeaderTabs;

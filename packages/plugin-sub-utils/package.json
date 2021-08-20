@@ -6,9 +6,6 @@
   "scripts": {
     "build": "father-build"
   },
-  "publishConfig": {
-    "registry": "http://r.npm.guorou.net"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC"

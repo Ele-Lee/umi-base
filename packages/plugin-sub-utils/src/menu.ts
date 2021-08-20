@@ -4,6 +4,11 @@ import { TNodeParams, HeaderMenuItem } from './typing';
 
 export const renderCustomTabs = () => {};
 
+export const makeRamdomId = () =>
+  Math.random()
+    .toString(36)
+    .slice(2);
+
 export const renderCustomMenu = (
   $nodeParams: TNodeParams,
   list?: Array<HeaderMenuItem>, // TODO
@@ -13,12 +18,11 @@ export const renderCustomMenu = (
     throw '需要抛出数组组件';
   }
   const { MenuItem } = $nodeParams;
-
   return list.map((item, idx) => {
     if (!item) return null;
     if (typeof item === 'function') {
       // @ts-ignore
-      return item({ ...$nodeParams, key: idx });
+      return item({ ...$nodeParams, key: item.key || makeRamdomId() });
     }
 
     const { app } = item.show || {};
@@ -27,10 +31,10 @@ export const renderCustomMenu = (
       const matchTemp = window.location.pathname.match(/\/([\w-]+)\/?/);
       if (!matchTemp || !app.includes(matchTemp[1])) return null;
     }
-
     return React.createElement(MenuItem, {
       children: React.createElement(item.node),
-      key: idx,
+      // key: idx,
+      key: item.key || makeRamdomId(),
     });
   });
 };

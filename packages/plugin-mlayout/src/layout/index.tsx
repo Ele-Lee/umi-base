@@ -157,6 +157,7 @@ function BaseLayout({
 //   return void 0;
 // }
 
+// 开启了dva就直接联通，没有启动dva要防止报错
 const __connect = connect
   ? connect
   : (props: any) => {
@@ -165,6 +166,7 @@ const __connect = connect
       };
     };
 
+// dva协定预定这个命名“microLayout”处理微前端数据
 export default __connect(({ microLayout }: { microLayout: MainAppModelState }) => {
   if (microLayout) {
     const dvaConfig = {

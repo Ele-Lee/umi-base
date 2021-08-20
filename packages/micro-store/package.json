@@ -12,9 +12,6 @@
     "build:rollup": "rm -rf ./lib && rollup -c",
     "build": "yarn build:rollup && yarn build:tsc"
   },
-  "publishConfig": {
-    "registry": "http://r.npm.guorou.net"
-  },
   "devDependencies": {
     "ali-oss": "^6.10.0",
     "husky": "^4.2.5",

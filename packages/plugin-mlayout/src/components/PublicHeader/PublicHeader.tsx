@@ -39,8 +39,8 @@ const PublicHeader = ({
     <div className="reset-antd" style={headerStyle}>
       <Header style={headerStyle} className="mlayout-publicHeader">
         {logo && (
-          <section className="mlayout-publicHeader-LogoWrap">
-            <div className="mlayout-publicHeader-Logo">
+          <section className="mlayout-publicHeader__LogoWrap">
+            <div className="mlayout-publicHeader__Logo">
               <img src={logo} alt="" />
               <span>{title}</span>
             </div>
@@ -48,11 +48,11 @@ const PublicHeader = ({
         )}
         {renderTabs}
         <Menu
+          className="mlayout-publicHeader__Menu"
           mode="horizontal"
           style={{
             lineHeight: `${globalHeaderHeight}px`,
             height: `${globalHeaderHeight}px`,
-            textAlign: 'right',
           }}
           selectedKeys={[]}
         >

@@ -1,6 +1,6 @@
 import { list2Tree } from '../../src/utils/list2Tree';
 
-const _url = '/portalapi/api/1/protal-micro/get_interim_menus';
+const _url = '/portalapi/get_menus';
 const fetchCache = new Map();
 export const getMenuFromConfigTB = async () => {
   try {
@@ -25,7 +25,7 @@ export const getMenuFromConfigTB = async () => {
     }
     fetchCache.set(url, fetchPromise);
     return list2Tree(
-      res.data.map(item => ({
+      res.data.map((item: any) => ({
         id: item.id,
         title: item.title,
         path: item.url,

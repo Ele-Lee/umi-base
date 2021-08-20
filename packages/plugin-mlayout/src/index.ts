@@ -1,6 +1,6 @@
 import { IApi, utils } from 'umi';
 import { join } from 'path';
-import * as allIcons from '@ant-design/icons';
+// import * as allIcons from '@ant-design/icons';
 import getLayoutContent from './utils/getLayoutContent';
 // import { LayoutConfig } from './types';
 import { readFileSync, existsSync } from 'fs';
@@ -142,22 +142,25 @@ export default (api: IApi) => {
         layoutOpts,
         currentLayoutComponentPath,
         {
+          // 顶部栏右侧按钮，约定的src文件位置：src/mlayout/headerMenu
           headerMenu: existspathExistMap.hasHeaderMenuPath ? pathMap.headerMenuPath : void 0,
+          // 顶部栏logo右侧空间，约定的src文件位置：src/mlayout/headerTabs
           headerTabs: existspathExistMap.hasHeaderTabs ? pathMap.headerTabsPath : void 0,
+          // 头像的登录插件的插件名，登录插件将插入顶部栏最右侧，头像下拉的子菜单约定位置： src/mlayout/headerSubMenuForLogin
           injectMenuPlugin,
           headerTitle,
+          // 侧边栏菜单
           menus,
         },
         {},
       ),
     });
 
-    // 生效临时的 icon 文件
-    // TODO 这里需要补充
-    const icons = formatter(userConfig.menusConfig);
-    let iconsString = icons.map(
-      iconName => `import ${iconName} from '@ant-design/icons/${iconName}'`,
-    );
+    // 全量 icon 文件
+    // const icons = formatter(userConfig.menusConfig);
+    // let iconsString = icons.map(
+    //   iconName => `import ${iconName} from '@ant-design/icons/${iconName}'`,
+    // );
 
     // api.writeTmpFile({
     //   path: join(DIR_NAME, 'icons.ts'),

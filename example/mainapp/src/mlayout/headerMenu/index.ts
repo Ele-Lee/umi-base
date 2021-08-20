@@ -11,5 +11,6 @@ export default [
   },
   {
     node: item2,
+    key: 'main-item2',
   },
 ];

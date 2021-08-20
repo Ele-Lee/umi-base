@@ -1,23 +1,12 @@
 {
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "version": "0.0.10",
-  "command": {
-    "publish": {
-      "registry": "http://r.npm.guorou.net"
-    }
-  },
+
   "versionRef": "tag",
   "preid": "beta",
   "verifyAccess": false,
   "verifyRegistry": false,
-  "ignoreChanges": [
-    "**/__fixtures__/**",
-    "**/__tests__/**",
-    "**/*.test.*",
-    "**/*.md"
-  ]
+  "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "**/*.test.*", "**/*.md"]
 }
