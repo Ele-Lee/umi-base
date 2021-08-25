@@ -12,11 +12,11 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({}) => {
     //   console.log('%celelee test:', 'background:#000;color:#fff', args);
     // });
     console.log('%celelee test:', 'background:#000;color:#fff', infoData);
-  }, []);
+  }, [infoData]);
 
   return (
     <div
-      style={{ flex: 1, marginLeft: 26, display: 'flex', alignItems: 'center', fontSize: 20 }}
+      style={{ flex: 0, marginLeft: 26, display: 'flex', alignItems: 'center', fontSize: 20 }}
       onClick={() => {
         alert(1);
       }}

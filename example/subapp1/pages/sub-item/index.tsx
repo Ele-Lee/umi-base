@@ -7,7 +7,7 @@ const Child = () => {
     // throw 'Error 123';
   }, []);
 
-  return <div className={style.red}>55512</div>;
+  return <div className={style.red}>sub item2</div>;
 };
 
 class Index1 extends React.Component {

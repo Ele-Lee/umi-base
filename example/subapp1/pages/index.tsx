@@ -9,7 +9,7 @@ var a = debounce(() => {
 const Home = props => {
   return (
     <div>
-      <h1> index</h1>
+      <h1>subapp1 index~</h1>
       <Button onClick={a}>click</Button>
     </div>
   );

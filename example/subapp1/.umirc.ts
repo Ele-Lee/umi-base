@@ -44,16 +44,41 @@ export default defineConfig({
   //   },
   // ],
   proxy: {
+    // '/portalapi': {
+    //   target: 'http://portal.test.guorou.net',
+    //   changeOrigin: true,
+    // },
+    // '/phome': {
+    //   target: 'http://portalhome.uae.shensz.local',
+    //   changeOrigin: true,
+    // },
+    // '/login': {
+    //   target: 'http://portalhome.uae.shensz.local',
+    //   changeOrigin: true,
+    // },
     '/portalapi': {
-      target: 'http://portal.test.guorou.net',
+      target: 'http://localhost:5555',
       changeOrigin: true,
     },
+    // '/portal': {
+    //   target: 'http://localhost:3000',
+    //   changeOrigin: true,
+    // },
     '/phome': {
-      target: 'http://portalhome.uae.shensz.local',
+      target: 'http://localhost:5555',
       changeOrigin: true,
     },
     '/login': {
-      target: 'http://portalhome.uae.shensz.local',
+      target: 'http://localhost:5555',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+    '/pauthapi': {
+      target: 'http://localhost:5555',
+      changeOrigin: true,
+    },
+    '/image': {
+      target: 'http://localhost:7777',
       changeOrigin: true,
     },
   },

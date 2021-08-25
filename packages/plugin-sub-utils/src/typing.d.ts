@@ -14,6 +14,7 @@ export type HeaderMenuItem =
       show?: {
         app?: string[];
         permission?: string[];
+        role?: string[];
       };
       key?: string | number;
     }

@@ -176,6 +176,12 @@ export default (api: IApi) => {
     //   path: join(DIR_NAME, 'runtime.tsx'),
     //   content: readFileSync(join(__dirname, 'runtime.tsx.tpl'), 'utf-8'),
     // });
+
+    const infoActionTpl = readFileSync(join(__dirname, './utils/layoutExport.tpl'), 'utf-8');
+    api.writeTmpFile({
+      path: `${DIR_NAME}/layoutExport.tsx`,
+      content: utils.Mustache.render(infoActionTpl, {}),
+    });
   });
 
   api.modifyRoutes(routes => {
@@ -189,4 +195,12 @@ export default (api: IApi) => {
   });
 
   // api.addRuntimePlugin(() => ['@@/' + DIR_NAME + '/runtime.tsx']);
+  api.addUmiExports(() => {
+    return {
+      source: utils.winPath(`../${DIR_NAME}/layoutExport`),
+      // source: `../${DIR_NAME}/infoAction`,
+      // specifiers: ['getUserInfo'],
+      exportAll: true,
+    };
+  });
 };

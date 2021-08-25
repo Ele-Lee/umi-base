@@ -29,13 +29,13 @@
     ".eslintcache": true,
     "src": true,
     "**/dist": true,
-    "**/es": true,
-    "**/lib": true,
+    "**/es": false,
+    "**/lib": false,
     "packages/*/*.d.ts": true,
     "packages/*/*.js": {
       "when": "$(basename).d.ts"
     },
-    "**/node_modules": true
+    "**/node_modules": false
   },
 
   "files.watcherExclude": {

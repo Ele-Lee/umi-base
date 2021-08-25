@@ -12,7 +12,7 @@ const LoginItemFC$ = require("${path}").default;
 
 export const LoginItemFC = (props) => {
 
-  const props$ = Object.assign(props, { headerSubMenuForLogin: ${
+  const props$ = Object.assign({}, props, { headerSubMenuForLogin: ${
     absPathMap.headerSubMenuForLogin
       ? 'require("' + absPathMap.headerSubMenuForLogin + '").default'
       : 'undefined'
@@ -20,7 +20,8 @@ export const LoginItemFC = (props) => {
   if(typeof LoginItemFC$ === 'function') {
     return LoginItemFC$(props$);
   }
-  return React.createElement(LoginItemFC$, props$);
+  // return React.createElement(LoginItemFC$, props$);
+  return <LoginItemFC$ {...props$}/>
 }
 
 export default LoginItemFC;

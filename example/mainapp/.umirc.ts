@@ -30,10 +30,9 @@ export default defineConfig({
     master: {
       // 注册子应用信息
       // apps: apps.map(item => ({ name: item.name, entry: item.entry_dev })),
-
-      sandbox: { experimentalStyleIsolation: true },
+      // sandbox: { experimentalStyleIsolation: true },
       // sandbox: {},
-      prefetch: 'all',
+      // prefetch: 'all',
     },
   },
 

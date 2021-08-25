@@ -110,7 +110,8 @@ function BaseLayout({
         <PublicHeader
           logo={headerLogo}
           title={headerTitle}
-          headerMenuList={headerMenu.concat(pluginItems)}
+          headerMenuList={headerMenu}
+          pluginItemsMenuList={pluginItems || []}
           globalHeaderHeight={globalHeaderHeight}
           headerTabs={headerTabs}
         />

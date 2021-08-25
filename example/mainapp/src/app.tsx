@@ -20,6 +20,35 @@ export function rootContainer(container: React.ReactNode) {
   );
 }
 
+// 缓存react-error-overlay的window属性
+let fixErrorCache: any = null;
+const devFixHotUpdateListener = () => {
+  if (!location.host.includes('localhost')) return;
+  fixErrorCache = window.__REACT_ERROR_OVERLAY_GLOBAL_HOOK__;
+
+  // 监听body下面是不是多了个iframe，是则删除
+  const mutationObserver = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      const dom = mutation.addedNodes[0];
+      // dom?.clientWidth == window.innerWidth
+      if (dom && dom.nodeName.toLowerCase() === 'iframe') {
+        document.querySelector('body')!.removeChild(dom);
+      }
+    });
+  });
+  mutationObserver.observe(document.querySelector('body')!, {
+    childList: true,
+  });
+};
+devFixHotUpdateListener();
+// 切走子应用时候,复原这个变量
+const devFixHotUpdateError = () => {
+  if (!location.host.includes('localhost')) return;
+  // 也可以考虑把其内部属性“iframeReady”赋值成空函数
+  window.__REACT_ERROR_OVERLAY_GLOBAL_HOOK__ =
+    window.__REACT_ERROR_OVERLAY_GLOBAL_HOOK__ || fixErrorCache;
+};
+
 export const qiankun = getMenuFromConfigTB()
   .then(res => {
     return {
@@ -27,9 +56,6 @@ export const qiankun = getMenuFromConfigTB()
         {
           name: 'subapp1', // 唯一 id
           entry: '//localhost:8100', // html entry
-          props: {
-            test: 1,
-          },
         },
         // {
         //   name: 'subapp2', // 唯一 id
@@ -58,7 +84,7 @@ export const qiankun = getMenuFromConfigTB()
           path: '/subapp1',
           microApp: 'subapp1',
           microAppProps: {
-            autoSetLoading: true,
+            // autoSetLoading: true,
           },
         },
         {
@@ -69,15 +95,13 @@ export const qiankun = getMenuFromConfigTB()
           microApp: 'subapp2',
         },
       ],
-      // lifeCycles: {
-      //   beforeUnmount: () => {
-      //     console.log(
-      //       '%celelee test:',
-      //       'background:#000;color:#fff',
-      //       'beforeUnmount',
-      //     );
-      //   },
-      // },
+      lifeCycles: {
+        afterMount() {},
+        beforeUnmount: () => {},
+        afterUnmount: () => {
+          devFixHotUpdateError();
+        },
+      },
     };
   })
   .catch(() => {

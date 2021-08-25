@@ -168,13 +168,6 @@ class MicroStore {
         enumerable: false,
       });
     } else {
-      // const fnType = isCover ? 'merge' : 'set';
-      // console.log(
-      //   '%celelee test:',
-      //   'background:#000;color:#fff',
-      //   win[storageCacheInsOnWindow],
-      //   fnType,
-      // );
       let tmpTarget = win[storageCacheInsOnWindow]['get'](name);
       // if (tmpTarget && tmpTarget.__isProxy) {
       //   tmpTarget.__isProxy = (tmpTarget.__isProxy || 0) + 1;

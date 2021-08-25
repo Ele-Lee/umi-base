@@ -6,6 +6,10 @@
     "build": "father-build"
   },
   "dependencies": {
+    "@grfe/micro-store": "file:../micro-store",
     "@grfe/plugin-sub-utils": "file:../plugin-sub-utils"
+  },
+  "devDependencies": {
+    "babel-plugin-import": "1.13.3"
   }
 }

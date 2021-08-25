@@ -9,10 +9,7 @@ export const makeRamdomId = () =>
     .toString(36)
     .slice(2);
 
-export const renderCustomMenu = (
-  $nodeParams: TNodeParams,
-  list?: Array<HeaderMenuItem>, // TODO
-) => {
+export const renderCustomMenu = ($nodeParams: TNodeParams, list?: Array<HeaderMenuItem>) => {
   if (!list) return null;
   if (!Array.isArray(list)) {
     throw '需要抛出数组组件';
@@ -31,9 +28,9 @@ export const renderCustomMenu = (
       const matchTemp = window.location.pathname.match(/\/([\w-]+)\/?/);
       if (!matchTemp || !app.includes(matchTemp[1])) return null;
     }
+    // return <MenuItem key={item.key || makeRamdomId()}>{React.createElement(item.node)}</MenuItem>;
     return React.createElement(MenuItem, {
       children: React.createElement(item.node),
-      // key: idx,
       key: item.key || makeRamdomId(),
     });
   });

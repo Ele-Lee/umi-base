@@ -6,7 +6,6 @@ export default [
     node: item1,
     show: {
       app: ['subapp1'],
-      role: [9],
     },
   },
   {

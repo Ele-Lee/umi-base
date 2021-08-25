@@ -3,6 +3,6 @@ import { getUserInfo } from 'umi';
 
 interface IndexProps {}
 const Index: React.FC<IndexProps> = ({}) => {
-  return <div>hello2!12142阿布3</div>;
+  return <div>hello2!121423</div>;
 };
 export default Index;

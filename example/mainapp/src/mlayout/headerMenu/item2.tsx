@@ -12,8 +12,6 @@ const a = () => {
       const data = store.get('subapp1/');
       setCustomDom(data.comp);
     });
-    //       setTimeout(() => {
-    // }, 1000);
   }, []);
 
   return (
@@ -26,6 +24,7 @@ const a = () => {
         }}
       >
         main顶部菜单
+        {customDom}
       </Button>
     </div>
   );

@@ -11,3 +11,7 @@ declare interface Window {
   __isMainApp__: boolean;
   __REACT_ERROR_OVERLAY_GLOBAL_HOOK__: any;
 }
+
+declare module 'umi' {
+  export function setTopMenuList(fn: (arr: any[]) => any[]);
+}

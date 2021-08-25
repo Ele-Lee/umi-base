@@ -11,8 +11,15 @@
 // 主应用
 const ss = new MicroStore({ state, isMain: true })
 // 子应用
-const ss = new MicroStore({ state, name: 'subapp1' })
+const sub1 = new MicroStore({ state, name: 'subapp1' })
+
+// 取得也是sub1内容
+const sub2 = new MicroStore({ state, name: 'subapp1' })
+
+// 将用新的state覆盖sub1
+const sub3 = new MicroStore({ state, name: 'subapp1', isCover: true })
 ```
+
 
 ### 开始使用
 ```js
