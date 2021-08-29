@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
+import QueryWrapHandler from '../../src/utils/QueryWrap';
 
 interface LevelProps {}
-const Level: React.FC<LevelProps> = ({}) => {
+const Level2: React.FC<LevelProps> = ({}) => {
+  useEffect(() => {
+    return () => {
+      console.log('%celelee test:', 'background:#000;color:#fff', 2);
+    };
+  }, []);
   return (
     <div
       style={{
@@ -17,4 +23,7 @@ const Level: React.FC<LevelProps> = ({}) => {
     </div>
   );
 };
-export default Level;
+
+// @ts-ignore
+Level2.id = '__Level2__';
+export default Level2;

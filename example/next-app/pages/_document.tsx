@@ -6,26 +6,29 @@ export default class MyDocument extends Document {
     // const render = () => Promise.resolve();
 
     (global => {
-        global.topWin = null
+      global.nextAppList = global.nextAppList || []
 
-        global['next-app'] = {
-            bootstrap: function() {
-                return Promise.resolve();
-            },
-            mount: function(props, b) {
-              global.imgCache = props.cache
-              global.topWin = props.topWin
-              global.__fatherDom__ = props.container
-              // global.topWin.nextAppList = global.topWin.nextAppList || []
-              // global.topWin.nextAppList.push(global['next-app'])
-              global.imgCache.fatherList.push(props.container)
-              // return render($);
-            },
-            unmount: function() {
-                return Promise.resolve();
-            }
-        };
+      global['next-app' + global.nextAppList.length] = {
+          bootstrap: function() {
+              return Promise.resolve();
+          },
+          mount: function(props, b) {
+            global.imgCache = props.store
+            // 存父容器
+            global.imgCache = props.cache
+            global.topWin = props.topWin
+            global.__fatherDom__ = props.container
+            // global.topWin.nextAppList = global.topWin.nextAppList || []
+            // global.topWin.nextAppList.push(global['next-app'])
+            global.imgCache.fatherList.push(props.container)
+          },
+          unmount: function() {
+              console.log('home unmount');
+              return Promise.resolve();
+          }
+      };
 
+      global.nextAppList.push(global['next-app' + global.nextAppList.length])
     })(window);
     `;
   }

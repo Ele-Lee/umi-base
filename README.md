@@ -1,9 +1,28 @@
+## demo启动过程 web + nodejs
+前端：
+1. yarn
+2. yarn build:pkg
+3. yarn + 下面的指令启动对应demo
+```js
+"dev:main": 主应用
+"dev:sub1": 子应用1
+"dev:sub2": 子应用1
+"dev:next": nextjs自应用
+```
+后端：
+1. cd ./services && yarn
+> 本来想写个假服务，返回一些接口，但是懒，只写了半个吧
+2. cd ./services yarn start
+
+
+---------
 ## 插件协议结构
-参考 example/mainapp
+
 
 ### 前置知识
 1. Umi的协议结构
 2. dva是自带的redux
+3. 巴拉巴拉
 
 ### 结构
 目录结构和打包和果皮一样

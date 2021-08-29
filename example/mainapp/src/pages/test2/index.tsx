@@ -104,7 +104,7 @@ const Board: React.FC<BoardProps> = ({}) => {
         <div
           id="secondNext"
           style={{
-            border: '4px solid gray',
+            border: '4px solid blue',
             // width: 375,
             height: 667,
             position: 'absolute',
