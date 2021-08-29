@@ -19,7 +19,7 @@ export function rootContainer(container: React.ReactNode) {
           }}
           style={{ border: '1px solid gray' }}
         >
-          sub1添加的顶部栏btn
+          sub1代码，渲染即有
         </span>
       ),
       key: 'sub1',

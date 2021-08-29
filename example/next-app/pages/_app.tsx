@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import ReactDOM from 'react-dom';
-import QueryWrap from '../src/utils/QueryWrap';
+import QueryWrapHandler from '../src/utils/QueryWrap';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
@@ -34,4 +34,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 // export async function update(props) {
 //   console.log('update props', props);
 // }
-export default QueryWrap(MyApp)
+export default QueryWrapHandler(MyApp)

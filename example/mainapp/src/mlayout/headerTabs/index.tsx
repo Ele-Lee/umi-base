@@ -21,7 +21,7 @@ const HeaderTabs: React.FC<HeaderTabsProps> = ({}) => {
         alert(1);
       }}
     >
-      nav1
+      {/* nav1 */}
     </div>
   );
 };

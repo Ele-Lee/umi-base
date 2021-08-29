@@ -6,32 +6,33 @@ export default class MyDocument extends Document {
     // const render = () => Promise.resolve();
 
     (global => {
-        global.nextAppList = global.nextAppList || []
+        global.topWin = null
 
-        global['next-app' + global.nextAppList.length] = {
+        global['next-app'] = {
             bootstrap: function() {
                 return Promise.resolve();
             },
             mount: function(props, b) {
-              global.imgCache = props.store
-              // global.topWin = props.topWin
+              global.imgCache = props.cache
+              global.topWin = props.topWin
               global.__fatherDom__ = props.container
+              // global.topWin.nextAppList = global.topWin.nextAppList || []
+              // global.topWin.nextAppList.push(global['next-app'])
+              global.imgCache.fatherList.push(props.container)
               // return render($);
             },
             unmount: function() {
-                console.log('home unmount');
                 return Promise.resolve();
             }
         };
 
-        global.nextAppList.push(global['next-app' + global.nextAppList.length])
     })(window);
     `;
   }
 
   render() {
     return (
-      <html>
+      <Html>
         <Head></Head>
         <body>
           {/* Main 其实就是App */}
@@ -40,7 +41,7 @@ export default class MyDocument extends Document {
         </body>
 
         <script dangerouslySetInnerHTML={{ __html: this.qiankunScript() }}></script>
-      </html>
+      </Html>
     );
   }
 }

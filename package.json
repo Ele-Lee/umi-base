@@ -16,6 +16,8 @@
     "dev:sub1": "WDS_SOCKET_PORT=8100 lerna exec --scope=subapp1 -- yarn start",
     "dev:sub2": "lerna exec --scope=subapp2 -- yarn start",
     "dev:next": "lerna exec --scope=next-app -- yarn dev",
+    "dev:nextstart": "lerna exec --scope=next-app -- yarn start",
+    "build:next": "lerna exec --scope=next-app -- yarn build",
     "build": "node scripts/build.js NO=1",
     "build:pkg": "lerna run build --scope '@grfe/micro-store' --scope '@grfe/plugin-sub-utils' --scope '@grfe/plugin-micro-layout' --scope '@grfe/plugin-layout-login'",
     "postinstall": "umi generate tmp",

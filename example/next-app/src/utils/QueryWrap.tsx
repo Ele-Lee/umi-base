@@ -9,8 +9,6 @@ import MyTTi from './ttiListener';
 // import { makeOssImgName, isDev } from '@/utils/common';
 // import { IMG_OSS_PATH_MAP } from '@/utils/constant';
 
-const THE_ID = '__nextRender__';
-
 // // modify 用来区别，图片类型，防止因为参数一样，不同海报生成的图片名字一样
 // const makeHashName = (customImgName: string, modify: string) => {
 //   // const storageUid = window.location.href
@@ -23,8 +21,10 @@ const THE_ID = '__nextRender__';
 // };
 // const previewStr = '__preview__=1';
 
-export default (Component: any, options: any = {}) => {
+const QueryWrapHandler = (Component: any, options: any = {}) => {
   const QueryWrap: any = (props: any) => {
+    // const { current: containerId } = useRef(props.containerId);
+    const containerId = '__nextRender__';
     // const postOssUrl = (imgNameInParams?: string, forceLaunch?: boolean) => {
     //   if (!forceLaunch) {
     //     // 有dev=1证明是预览，不执行自动生成
@@ -121,20 +121,20 @@ export default (Component: any, options: any = {}) => {
 
     useEffect(() => {
       // if (cancelAutoPost) return;
-      console.log('%celelee test:', 'background:#000;color:#fff', '状态:', renderStateDone);
+      if (!renderStateDone) return;
+
       (async function() {
-        const dom = document.getElementById(THE_ID);
+        const dom = window.__fatherDom__ || document.getElementById(containerId);
         const htmlToImage = await import('html-to-image');
         if (dom && htmlToImage) {
           const blob = await htmlToImage.toJpeg(dom);
           if (!blob) return;
 
-          // @ts-ignore
-          const globalTopWin = window.imgCache || {};
-          globalTopWin.test = blob;
+          const globalTopWin = window.imgCache || { list: [] };
+          globalTopWin.list.push(blob);
         }
       })();
-
+      console.log('%celelee test:', 'background:#000;color:#fff', renderStateDone);
       // if (renderStateDone && initKey) {
       //   if (imgKeysList && imgKeysList.length) {
       //     loadImgs(imgKeysList).then(() => postOssUrl());
@@ -171,7 +171,7 @@ export default (Component: any, options: any = {}) => {
     // };
 
     return (
-      <div id={THE_ID} style={{ display: 'inline-block' }}>
+      <div id={containerId} style={{ display: 'inline-block' }}>
         <Component {...props} />
         {/* {renderLoadedFont} */}
       </div>
@@ -182,12 +182,20 @@ export default (Component: any, options: any = {}) => {
     // const query = initQueryProps(asPath);
     // const initRes = await launchCompInitFnWithQuery(options, query);
     // const compInitRes = await launchCompInitialProps(Component, params);
-    return {};
+
+    const containerId =
+      '__nextRender__' +
+      Math.random()
+        .toString(36)
+        .slice(2);
+
+    return { containerId };
   };
 
   return QueryWrap;
 };
 
+export default QueryWrapHandler;
 // async function launchCompInitialProps(Comp: PagesProps<any>, params: NextPageContext) {
 //   if (typeof Comp.getInitialProps === 'function') {
 //     return Comp.getInitialProps(params);

@@ -57,10 +57,10 @@ export const qiankun = getMenuFromConfigTB()
           name: 'subapp1', // 唯一 id
           entry: '//localhost:8100', // html entry
         },
-        // {
-        //   name: 'subapp2', // 唯一 id
-        //   entry: '//localhost:8200', // html entry
-        // },
+        {
+          name: 'subapp2', // 唯一 id
+          entry: '//localhost:8200', // html entry
+        },
         // {
         //   name: 'course_portal', // 唯一 id
         //   entry: '//localhost:3000', // html entry
@@ -73,13 +73,6 @@ export const qiankun = getMenuFromConfigTB()
         // },
       ],
       routes: [
-        // {
-        //   path: '/portal',
-        //   microApp: 'course_portal',
-        //   microAppProps: {
-        //     autoSetLoading: true,
-        //   },
-        // },
         {
           path: '/subapp1',
           microApp: 'subapp1',

@@ -11,4 +11,5 @@ declare interface Window {
   __isMainApp__: boolean;
   __REACT_ERROR_OVERLAY_GLOBAL_HOOK__: any;
   imgCache: { list: string[] };
+  __fatherDom__: any;
 }

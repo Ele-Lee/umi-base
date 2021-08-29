@@ -67,7 +67,7 @@ const MainAppModel: IMainAppModel = {
               menus: [
                 // ...res,
                 {
-                  title: '子应用Aitem1',
+                  title: '①子-subapp1',
                   path: '/subapp1',
                   children: [
                     {
@@ -86,21 +86,21 @@ const MainAppModel: IMainAppModel = {
                     },
                   ],
                 },
-                // {
-                //   title: 'subapp2',
-                //   path: '/subapp2',
-                //   children: [
-                //     {
-                //       title: '子菜单2',
-                //       icon: 'CarOutlined',
-                //       path: '/sub-item2',
-                //     },
-                //     {
-                //       title: '子菜单3',
-                //       path: '/sub-item3',
-                //     },
-                //   ],
-                // },
+                {
+                  title: '②子-subapp2',
+                  path: '/subapp2',
+                  children: [
+                    {
+                      title: '子菜单a',
+                      icon: 'CarOutlined',
+                      path: '/sub-item2',
+                    },
+                    {
+                      title: '子菜单b',
+                      path: '/sub-item3',
+                    },
+                  ],
+                },
                 {
                   title: 'nextApp',
                   path: '/test2',

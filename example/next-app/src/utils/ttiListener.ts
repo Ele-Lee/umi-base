@@ -58,8 +58,6 @@ export default class MyTTi {
         }
       }
     });
-
-    // @ts-ignore
     mutationObserver.observe(window.__fatherDom__ || document, {
       attributes: true,
       childList: true,
@@ -111,7 +109,7 @@ interface PerformanceEntry extends globalThis.PerformanceEntry {
   // name: string;
 }
 
-function subtreeContainsNodeName(nodes, nodeNames) {
+function subtreeContainsNodeName(nodes: any, nodeNames: any) {
   for (const node of nodes) {
     if (
       (node.nodeName && nodeNames.includes(node.nodeName.toLowerCase())) ||
