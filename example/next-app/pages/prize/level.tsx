@@ -4,11 +4,6 @@ import QueryWrapHandler from '../../src/utils/QueryWrap';
 
 interface LevelProps {}
 const Level: React.FC<LevelProps> = ({}) => {
-  useEffect(() => {
-    return () => {
-      console.log('%celelee test:', 'background:#000;color:#fff', 1);
-    };
-  }, []);
   return (
     <div
       style={{

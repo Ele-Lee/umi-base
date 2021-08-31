@@ -27,6 +27,19 @@ export function rootContainer(container: React.ReactNode) {
     // 返回修改的结果
     return menuListByShallowCloning;
   });
+
+  console.log(
+    '%celelee test:',
+    'background:#000;color:#fff',
+    <span
+      onClick={() => {
+        alert(1);
+      }}
+      style={{ border: '1px solid gray' }}
+    >
+      sub1代码，渲染即有
+    </span>,
+  );
   return <ConfigProvider locale={zhCN}>{container}</ConfigProvider>;
 }
 export const qiankun = {
